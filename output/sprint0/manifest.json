@@ -1,0 +1,107 @@
+{
+  "sprint": 0,
+  "generated": "2026-02-03T10:26:32.197Z",
+  "assets": [
+    {
+      "name": "hero_face_celebrate",
+      "svg": "hero_face_celebrate.svg",
+      "png": "hero_face_celebrate.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_happy",
+      "svg": "hero_face_happy.svg",
+      "png": "hero_face_happy.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_hurt",
+      "svg": "hero_face_hurt.svg",
+      "png": "hero_face_hurt.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_serious",
+      "svg": "hero_face_serious.svg",
+      "png": "hero_face_serious.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_thinking",
+      "svg": "hero_face_thinking.svg",
+      "png": "hero_face_thinking.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_idle_f0",
+      "svg": "hero_idle_f0.svg",
+      "png": "hero_idle_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_idle_f1",
+      "svg": "hero_idle_f1.svg",
+      "png": "hero_idle_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_idle_f2",
+      "svg": "hero_idle_f2.svg",
+      "png": "hero_idle_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_idle_f3",
+      "svg": "hero_idle_f3.svg",
+      "png": "hero_idle_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "item_gold_test",
+      "svg": "item_gold_test.svg",
+      "png": "item_gold_test.png",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "item_hp_small_test",
+      "svg": "item_hp_small_test.svg",
+      "png": "item_hp_small_test.png",
+      "width": 32,
+      "height": 32
+    },
+    {
+      "name": "tile_sg_road_test",
+      "svg": "tile_sg_road_test.svg",
+      "png": "tile_sg_road_test.png",
+      "width": 50,
+      "height": 50
+    },
+    {
+      "name": "ui_btn_play_test",
+      "svg": "ui_btn_play_test.svg",
+      "png": "ui_btn_play_test.png",
+      "width": 280,
+      "height": 70
+    },
+    {
+      "name": "weapon_icon_ranged_a_test",
+      "svg": "weapon_icon_ranged_a_test.svg",
+      "png": "weapon_icon_ranged_a_test.png",
+      "width": 96,
+      "height": 96
+    }
+  ],
+  "spriteSheets": [
+    "hero_idle_sheet.png"
+  ]
+}

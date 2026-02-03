@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduHero — Sprint 0 Preview</title>
+  <style>
+    :root {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --card-hover: #1c2b4a;
+      --text: #e0e0e0;
+      --accent: #FF9800;
+      --accent2: #4CAF50;
+      --border: #0f3460;
+      --grid: repeating-conic-gradient(#ffffff08 0% 25%, transparent 0% 50%) 50% / 20px 20px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #0f3460, #1a1a2e);
+      border-bottom: 3px solid var(--accent);
+      padding: 24px 32px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 28px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .header p { color: #90A4AE; font-size: 14px; }
+    .header .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #1a1a2e;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    /* Layout */
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section h2 span { font-size: 14px; color: #90A4AE; font-weight: normal; margin-left: 8px; }
+
+    /* Asset Grid */
+    .asset-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .asset-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .asset-card:hover {
+      background: var(--card-hover);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(255, 152, 0, 0.15);
+    }
+    .asset-card .preview {
+      background: var(--grid);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      min-height: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    .asset-card .preview img,
+    .asset-card .preview object {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .asset-card .name {
+      font-size: 11px;
+      color: #90A4AE;
+      font-family: 'Courier New', monospace;
+      word-break: break-all;
+    }
+    .asset-card .size {
+      font-size: 10px;
+      color: #546E7A;
+      margin-top: 2px;
+    }
+
+    /* Size presets */
+    .card-128 { width: 180px; }
+    .card-128 .preview { width: 148px; height: 148px; }
+    .card-64  { width: 130px; }
+    .card-64 .preview { width: 98px; height: 98px; }
+    .card-96  { width: 160px; }
+    .card-96 .preview { width: 128px; height: 128px; }
+    .card-32  { width: 110px; }
+    .card-32 .preview { width: 80px; height: 80px; }
+    .card-wide { width: 340px; }
+    .card-wide .preview { width: 308px; height: 100px; }
+    .card-50 { width: 120px; }
+    .card-50 .preview { width: 88px; height: 88px; }
+    .card-sheet { width: 100%; max-width: 600px; }
+    .card-sheet .preview { width: 100%; height: 160px; }
+
+    /* Animation preview */
+    .anim-container {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .anim-container h3 { color: var(--accent2); margin-bottom: 12px; font-size: 16px; }
+    .anim-stage {
+      background: var(--grid);
+      border-radius: 8px;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .anim-stage object,
+    .anim-stage img {
+      position: absolute;
+      width: 128px;
+      height: 128px;
+    }
+    .anim-controls {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+    }
+    .anim-controls button {
+      background: var(--border);
+      color: var(--text);
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+    .anim-controls button:hover { background: var(--accent); color: #1a1a2e; }
+    .anim-controls button.active { background: var(--accent); color: #1a1a2e; }
+    .anim-controls .fps { color: #90A4AE; font-size: 12px; }
+
+    /* Palette section */
+    .palette-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .palette-swatch {
+      width: 60px;
+      text-align: center;
+    }
+    .palette-swatch .color {
+      width: 60px;
+      height: 36px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      margin-bottom: 4px;
+    }
+    .palette-swatch .hex {
+      font-size: 9px;
+      color: #90A4AE;
+      font-family: monospace;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .stat-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-align: center;
+    }
+    .stat-box .number {
+      font-size: 28px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+    .stat-box .label { font-size: 11px; color: #90A4AE; }
+
+    .zoom-controls {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .zoom-btn {
+      background: var(--border);
+      color: var(--text);
+      border: none;
+      padding: 4px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .zoom-btn:hover, .zoom-btn.active { background: var(--accent); color: #1a1a2e; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>EduHero — Asset Preview</h1>
+    <p>Chibi 2D Vector-Style &bull; Sprint 0: Setup &amp; Prototype</p>
+    <span class="badge">SPRINT 0</span>
+  </div>
+
+  <div class="container">
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat-box"><div class="number" id="totalSvg">14</div><div class="label">SVG Files</div></div>
+      <div class="stat-box"><div class="number" id="totalPng">14</div><div class="label">PNG Files</div></div>
+      <div class="stat-box"><div class="number">1</div><div class="label">Sprite Sheet</div></div>
+      <div class="stat-box"><div class="number">4</div><div class="label">Anim Frames</div></div>
+    </div>
+
+    <!-- ═══ Hero Idle Animation ═══ -->
+    <div class="section">
+      <h2>Hero Idle Animation <span>T0.3 &mdash; 4 frames, 128&times;128px</span></h2>
+
+      <div class="anim-container">
+        <h3>Idle Animation (live preview)</h3>
+        <div class="anim-stage" id="animStage">
+          <object data="../output/sprint0/hero_idle_f0.svg" type="image/svg+xml" id="animFrame" width="128" height="128"></object>
+        </div>
+        <div class="anim-controls">
+          <button onclick="toggleAnim()" id="btnPlayPause" class="active">&#9654; Play</button>
+          <button onclick="stepFrame(-1)">&#9664; Prev</button>
+          <button onclick="stepFrame(1)">Next &#9654;</button>
+          <span class="fps">Frame: <strong id="frameNum">0</strong>/3 &bull; <strong id="fpsVal">4</strong> FPS</span>
+          <button onclick="changeFPS(-1)">-</button>
+          <button onclick="changeFPS(1)">+</button>
+        </div>
+      </div>
+
+      <div class="asset-grid">
+        <div class="asset-card card-128">
+          <div class="preview"><object data="../output/sprint0/hero_idle_f0.svg" type="image/svg+xml" width="128" height="128"></object></div>
+          <div class="name">hero_idle_f0</div>
+          <div class="size">128&times;128 &bull; Frame 0 (normal)</div>
+        </div>
+        <div class="asset-card card-128">
+          <div class="preview"><object data="../output/sprint0/hero_idle_f1.svg" type="image/svg+xml" width="128" height="128"></object></div>
+          <div class="name">hero_idle_f1</div>
+          <div class="size">128&times;128 &bull; Frame 1 (breathe up)</div>
+        </div>
+        <div class="asset-card card-128">
+          <div class="preview"><object data="../output/sprint0/hero_idle_f2.svg" type="image/svg+xml" width="128" height="128"></object></div>
+          <div class="name">hero_idle_f2</div>
+          <div class="size">128&times;128 &bull; Frame 2 (blink)</div>
+        </div>
+        <div class="asset-card card-128">
+          <div class="preview"><object data="../output/sprint0/hero_idle_f3.svg" type="image/svg+xml" width="128" height="128"></object></div>
+          <div class="name">hero_idle_f3</div>
+          <div class="size">128&times;128 &bull; Frame 3 (breathe down)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Hero Sprite Sheet ═══ -->
+    <div class="section">
+      <h2>Sprite Sheet <span>T0.4 &mdash; TexturePacker JSON Array format</span></h2>
+      <div class="asset-grid">
+        <div class="asset-card card-sheet">
+          <div class="preview"><img src="../output/sprint0/sheets/hero_idle_sheet.png" alt="hero idle sheet" style="image-rendering: pixelated; width: 100%;"></div>
+          <div class="name">hero_idle_sheet.png</div>
+          <div class="size">512&times;128 &bull; 4 frames &bull; + JSON metadata</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Hero Expressions ═══ -->
+    <div class="section">
+      <h2>Hero Portraits <span>5 bi&#x1EC3;u c&#x1EA3;m &mdash; 64&times;64px</span></h2>
+      <div class="asset-grid">
+        <div class="asset-card card-64">
+          <div class="preview"><object data="../output/sprint0/hero_face_happy.svg" type="image/svg+xml" width="64" height="64"></object></div>
+          <div class="name">hero_face_happy</div>
+          <div class="size">64&times;64 &bull; Menu, Victory</div>
+        </div>
+        <div class="asset-card card-64">
+          <div class="preview"><object data="../output/sprint0/hero_face_serious.svg" type="image/svg+xml" width="64" height="64"></object></div>
+          <div class="name">hero_face_serious</div>
+          <div class="size">64&times;64 &bull; Combat HUD</div>
+        </div>
+        <div class="asset-card card-64">
+          <div class="preview"><object data="../output/sprint0/hero_face_hurt.svg" type="image/svg+xml" width="64" height="64"></object></div>
+          <div class="name">hero_face_hurt</div>
+          <div class="size">64&times;64 &bull; HP th&#x1EA5;p</div>
+        </div>
+        <div class="asset-card card-64">
+          <div class="preview"><object data="../output/sprint0/hero_face_thinking.svg" type="image/svg+xml" width="64" height="64"></object></div>
+          <div class="name">hero_face_thinking</div>
+          <div class="size">64&times;64 &bull; Quiz mode</div>
+        </div>
+        <div class="asset-card card-64">
+          <div class="preview"><object data="../output/sprint0/hero_face_celebrate.svg" type="image/svg+xml" width="64" height="64"></object></div>
+          <div class="name">hero_face_celebrate</div>
+          <div class="size">64&times;64 &bull; Level up</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Weapon Icon ═══ -->
+    <div class="section">
+      <h2>Weapon Icon Test <span>N&#x1ECF; An D&#x01B0;&#x01A1;ng V&#x01B0;&#x01A1;ng &mdash; 96&times;96px</span></h2>
+      <div class="asset-grid">
+        <div class="asset-card card-96">
+          <div class="preview"><object data="../output/sprint0/weapon_icon_ranged_a_test.svg" type="image/svg+xml" width="96" height="96"></object></div>
+          <div class="name">weapon_icon_ranged_a</div>
+          <div class="size">96&times;96 &bull; Ranged weapon A</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Drop Items ═══ -->
+    <div class="section">
+      <h2>Drop Items Test <span>32&times;32px</span></h2>
+      <div class="asset-grid">
+        <div class="asset-card card-32">
+          <div class="preview"><object data="../output/sprint0/item_gold_test.svg" type="image/svg+xml" width="32" height="32"></object></div>
+          <div class="name">item_gold</div>
+          <div class="size">32&times;32 &bull; Gold coin</div>
+        </div>
+        <div class="asset-card card-32">
+          <div class="preview"><object data="../output/sprint0/item_hp_small_test.svg" type="image/svg+xml" width="32" height="32"></object></div>
+          <div class="name">item_hp_small</div>
+          <div class="size">32&times;32 &bull; B&aacute;nh Ch&#x01B0;ng</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ UI Button ═══ -->
+    <div class="section">
+      <h2>UI Button Test <span>280&times;70px</span></h2>
+      <div class="asset-grid">
+        <div class="asset-card card-wide">
+          <div class="preview"><object data="../output/sprint0/ui_btn_play_test.svg" type="image/svg+xml" width="280" height="70"></object></div>
+          <div class="name">ui_btn_play</div>
+          <div class="size">280&times;70 &bull; Main menu button</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Tile Test ═══ -->
+    <div class="section">
+      <h2>Tile Test <span>S&agrave;i G&ograve;n Road &mdash; 50&times;50px</span></h2>
+      <div class="asset-grid">
+        <div class="asset-card card-50">
+          <div class="preview"><object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object></div>
+          <div class="name">tile_sg_road</div>
+          <div class="size">50&times;50 &bull; Map 1 road tile</div>
+        </div>
+        <!-- Tiled preview -->
+        <div class="asset-card" style="width:280px;">
+          <div class="preview" style="width:250px; height:150px; display:grid; grid-template-columns: repeat(5,50px); grid-template-rows: repeat(3,50px); gap:0;">
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+            <object data="../output/sprint0/tile_sg_road_test.svg" type="image/svg+xml" width="50" height="50"></object>
+          </div>
+          <div class="name">Tiled 5&times;3 Preview</div>
+          <div class="size">Tiles ghep l&#x1EA1;i ki&#x1EC3;m tra seamless</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ Color Palette ═══ -->
+    <div class="section">
+      <h2>Color Palette <span>T0.2 &mdash; Hero colors</span></h2>
+      <div class="palette-grid" id="paletteGrid"></div>
+    </div>
+
+    <!-- ═══ PNG Output ═══ -->
+    <div class="section">
+      <h2>PNG Output <span>T0.4 &mdash; Sharp SVG &rarr; PNG pipeline</span></h2>
+      <div class="asset-grid">
+        <div class="asset-card card-128">
+          <div class="preview"><img src="../output/sprint0/png/hero_idle_f0.png" alt="hero idle f0 png" style="image-rendering: pixelated; width:128px; height:128px;"></div>
+          <div class="name">hero_idle_f0.png</div>
+          <div class="size">128&times;128 PNG &bull; Full size</div>
+        </div>
+        <div class="asset-card card-128">
+          <div class="preview"><img src="../output/sprint0/png_64/hero_idle_f0.png" alt="hero idle f0 64px" style="image-rendering: pixelated; width:64px; height:64px;"></div>
+          <div class="name">hero_idle_f0.png (64px)</div>
+          <div class="size">64&times;64 PNG &bull; Game size</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ═══ Animation Player ═══
+    const FRAMES = [
+      '../output/sprint0/hero_idle_f0.svg',
+      '../output/sprint0/hero_idle_f1.svg',
+      '../output/sprint0/hero_idle_f2.svg',
+      '../output/sprint0/hero_idle_f3.svg'
+    ];
+    let currentFrame = 0;
+    let fps = 4;
+    let playing = false;
+    let animInterval = null;
+
+    function showFrame(idx) {
+      currentFrame = ((idx % FRAMES.length) + FRAMES.length) % FRAMES.length;
+      document.getElementById('animFrame').data = FRAMES[currentFrame];
+      document.getElementById('frameNum').textContent = currentFrame;
+    }
+
+    function stepFrame(delta) {
+      showFrame(currentFrame + delta);
+    }
+
+    function toggleAnim() {
+      playing = !playing;
+      const btn = document.getElementById('btnPlayPause');
+      if (playing) {
+        btn.textContent = '⏸ Pause';
+        btn.classList.add('active');
+        startAnim();
+      } else {
+        btn.textContent = '▶ Play';
+        btn.classList.remove('active');
+        stopAnim();
+      }
+    }
+
+    function startAnim() {
+      stopAnim();
+      animInterval = setInterval(() => stepFrame(1), 1000 / fps);
+    }
+
+    function stopAnim() {
+      if (animInterval) clearInterval(animInterval);
+      animInterval = null;
+    }
+
+    function changeFPS(delta) {
+      fps = Math.max(1, Math.min(12, fps + delta));
+      document.getElementById('fpsVal').textContent = fps;
+      if (playing) startAnim();
+    }
+
+    // ═══ Palette Display ═══
+    const heroColors = {
+      'Skin base':    '#F5D0A9',
+      'Skin shadow':  '#D4A574',
+      'Skin hi':      '#FFE4C4',
+      'Hair':         '#2C2C2C',
+      'Eyes':         '#1A1A1A',
+      'Mouth':        '#E57373',
+      'Blush':        '#FFB6C1',
+      'Pants':        '#5D4037',
+      'Pants alt':    '#4CAF50',
+      'Outline':      '#2C1810',
+      'Gold':         '#FFC107',
+      'HP Green':     '#4CAF50',
+      'Damage Red':   '#FF5722',
+      'Speed Blue':   '#2196F3',
+      'Magic Purple': '#7B1FA2',
+      'UI Orange':    '#FF9800',
+    };
+
+    const grid = document.getElementById('paletteGrid');
+    for (const [name, hex] of Object.entries(heroColors)) {
+      const div = document.createElement('div');
+      div.className = 'palette-swatch';
+      div.innerHTML = `<div class="color" style="background:${hex}"></div><div class="hex">${hex}</div><div class="hex" style="color:#607D8B;">${name}</div>`;
+      grid.appendChild(div);
+    }
+  </script>
+
+</body>
+</html>
