@@ -1,10 +1,9 @@
 /**
- * EduHero — Chibi Template Parts (Reusable SVG Components)
+ * EduHero — Chibi Template Parts
  *
- * Phong cách: Đầu SIÊU TO chiếm ~65% sprite, thân rất nhỏ
- * Tham khảo: chibi monk cute (đầu tròn, tai, mắt đen to, miệng cười hở)
- * Outline: 3-3.5px đậm, bo tròn
- * Coordinate system: 128×128px canvas, center = (64, 64)
+ * Phong cách: 100% giống mẫu chibi monk cute
+ * Đầu siêu to ~65%, outline đen đậm 3-4px, đơn giản, sạch sẽ
+ * 128×128px canvas
  */
 
 const PALETTE = require('../constants/palette');
@@ -42,210 +41,208 @@ ${stops}
     </linearGradient>`;
 }
 
-function outlineStyle(width = 3, color = PALETTE.common.outline) {
+function outlineStyle(width = 3, color = '#1A1A1A') {
   return `stroke="${color}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"`;
 }
 
 // ═══════════════════════════════════════════════════════════
-// CHIBI HEAD — Đầu siêu to kiểu chibi monk
+// CHIBI HEAD — 100% giống mẫu
 // ═══════════════════════════════════════════════════════════
 
 function chibiHead(opts = {}) {
   const cx = opts.cx || 64;
   const cy = opts.cy || 42;
-  const r = opts.radius || 36;  // ĐẦU RẤT TO
+  const r = opts.radius || 38;
   const gId = opts.gradientId || 'headGrad';
   const expr = opts.expression || 'happy';
   const showBlush = opts.showBlush !== false;
   const skin = PALETTE.hero.skin;
-  const hair = PALETTE.hero.hair;
-  const OL = '#1A1A1A';  // outline đen đậm giống hình mẫu
-  const OLW = 3.5;       // outline width đậm
+  const OL = '#1A1A1A';
+  const OLW = 3.5;
 
   let defs = '';
   let body = '';
 
-  defs += radialGradient(gId, [skin.highlight, skin.base, skin.shadow], '48%', '38%', '60%') + '\n';
+  // Skin gradient
+  defs += radialGradient(gId, [skin.highlight, skin.base, skin.shadow], '48%', '42%', '58%') + '\n';
+  // Hair gradient (xám)
+  defs += radialGradient(`${gId}Hair`, ['#B0B0B0', '#808080', '#606060'], '55%', '30%', '60%') + '\n';
 
-  // ── Tai (vẽ trước để nằm sau đầu) ──
+  // ── Tai (nằm sau đầu) ──
   body += `    <!-- Ears -->\n`;
-  const earR = r * 0.18;
-  const earY = cy + r * 0.15;
-  // Tai trái
-  body += `    <ellipse cx="${cx - r * 0.92}" cy="${earY}" rx="${earR}" ry="${earR * 1.2}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
-  body += `    <ellipse cx="${cx - r * 0.92}" cy="${earY}" rx="${earR * 0.5}" ry="${earR * 0.7}" fill="${skin.shadow}" opacity="0.3" />\n`;
-  // Tai phải
-  body += `    <ellipse cx="${cx + r * 0.92}" cy="${earY}" rx="${earR}" ry="${earR * 1.2}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
-  body += `    <ellipse cx="${cx + r * 0.92}" cy="${earY}" rx="${earR * 0.5}" ry="${earR * 0.7}" fill="${skin.shadow}" opacity="0.3" />\n`;
+  const earW = r * 0.16;
+  const earH = r * 0.22;
+  const earY = cy + r * 0.12;
+  body += `    <ellipse cx="${cx - r + earW * 0.3}" cy="${earY}" rx="${earW}" ry="${earH}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
+  body += `    <ellipse cx="${cx - r + earW * 0.3}" cy="${earY}" rx="${earW * 0.45}" ry="${earH * 0.55}" fill="${skin.shadow}" opacity="0.25" />\n`;
+  body += `    <ellipse cx="${cx + r - earW * 0.3}" cy="${earY}" rx="${earW}" ry="${earH}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
+  body += `    <ellipse cx="${cx + r - earW * 0.3}" cy="${earY}" rx="${earW * 0.45}" ry="${earH * 0.55}" fill="${skin.shadow}" opacity="0.25" />\n`;
 
-  // ── Đầu tròn to ──
+  // ── Đầu tròn ──
   body += `    <!-- Head -->\n`;
-  body += `    <ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r * 0.95}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
+  body += `    <ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r * 0.96}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  // ── Tóc quả đào chú tiểu ──
-  defs += radialGradient(`${gId}Hair`, [hair.highlight, hair.base, hair.shadow], '45%', '30%', '65%') + '\n';
-  body += `    <!-- Hair -->\n`;
-
-  // Chân tóc mỏng trên trán
-  body += `    <path d="M${cx - r * 0.5} ${cy - r * 0.75}
-      Q ${cx - r * 0.2} ${cy - r * 0.9}, ${cx + r * 0.05} ${cy - r * 0.88}
-      Q ${cx + r * 0.3} ${cy - r * 0.85}, ${cx + r * 0.5} ${cy - r * 0.7}
-      Q ${cx + r * 0.3} ${cy - r * 0.8}, ${cx + r * 0.05} ${cy - r * 0.82}
-      Q ${cx - r * 0.2} ${cy - r * 0.84}, ${cx - r * 0.5} ${cy - r * 0.75} Z"
-      fill="url(#${gId}Hair)" opacity="0.4" />\n`;
-
-  // Búi tóc quả đào
-  const peachCX = cx + r * 0.05;
-  const peachTopY = cy - r * 0.95;
-  const ps = r * 0.42;
-
+  // ── Tóc: mũ xám trơn phủ nửa trên đầu (giống mẫu 100%) ──
+  body += `    <!-- Hair cap -->\n`;
+  const hairY = cy - r * 0.15;  // đường chân tóc ngang giữa trán
   body += `    <path d="
-      M${peachCX} ${peachTopY + ps * 0.7}
-      Q ${peachCX - ps * 1.1} ${peachTopY + ps * 0.5},
-        ${peachCX - ps * 0.8} ${peachTopY - ps * 0.2}
-      Q ${peachCX - ps * 0.5} ${peachTopY - ps * 0.8},
-        ${peachCX + ps * 0.05} ${peachTopY - ps * 0.5}
-      Q ${peachCX + ps * 0.6} ${peachTopY - ps * 0.85},
-        ${peachCX + ps * 0.9} ${peachTopY - ps * 0.15}
-      Q ${peachCX + ps * 1.1} ${peachTopY + ps * 0.5},
-        ${peachCX + ps * 0.3} ${peachTopY + ps * 0.95}
-      Q ${peachCX + ps * 0.15} ${peachTopY + ps * 0.85},
-        ${peachCX} ${peachTopY + ps * 0.7} Z"
+      M${cx - r + 1} ${hairY}
+      Q ${cx - r} ${cy - r * 0.5}, ${cx - r * 0.7} ${cy - r * 0.88}
+      Q ${cx - r * 0.3} ${cy - r * 1.05}, ${cx} ${cy - r * 0.98}
+      Q ${cx + r * 0.3} ${cy - r * 1.05}, ${cx + r * 0.7} ${cy - r * 0.88}
+      Q ${cx + r} ${cy - r * 0.5}, ${cx + r - 1} ${hairY}
+      Z"
       fill="url(#${gId}Hair)" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  // Rãnh trái tim
-  body += `    <path d="M${peachCX + ps * 0.05} ${peachTopY - ps * 0.5}
-      Q ${peachCX + ps * 0.05} ${peachTopY - ps * 0.15},
-        ${peachCX} ${peachTopY + ps * 0.05}"
-      fill="none" stroke="${hair.shadow}" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />\n`;
-
-  // Highlight tóc
-  body += `    <ellipse cx="${peachCX - ps * 0.3}" cy="${peachTopY - ps * 0.1}" rx="${ps * 0.2}" ry="${ps * 0.28}" fill="${hair.highlight}" opacity="0.2" transform="rotate(-15 ${peachCX - ps * 0.3} ${peachTopY - ps * 0.1})" />\n`;
+  // Highlight tròn trên tóc (giống mẫu — chấm sáng trắng)
+  body += `    <ellipse cx="${cx + r * 0.2}" cy="${cy - r * 0.7}" rx="${r * 0.15}" ry="${r * 0.15}" fill="#FFFFFF" opacity="0.55" />\n`;
 
   // ── Mắt ──
   body += `    <!-- Eyes -->\n`;
-  const eyeL = cx - r * 0.35;
-  const eyeR = cx + r * 0.35;
-  const eyeY = cy + r * 0.08;
-  const eyeRX = r * 0.18;  // chiều ngang mắt
-  const eyeRY = r * 0.22;  // chiều dọc mắt (oval đứng)
+  const eyeL = cx - r * 0.33;
+  const eyeR = cx + r * 0.33;
+  const eyeY = cy + r * 0.12;
+  const eyeRX = r * 0.17;
+  const eyeRY = r * 0.2;
 
   if (expr === 'blink') {
-    const bw = eyeRX * 1.3;
+    // Mắt nhắm — nét cong đơn giản
+    const bw = eyeRX * 1.5;
     body += `    <path d="M${eyeL - bw} ${eyeY} Q ${eyeL} ${eyeY + 4}, ${eyeL + bw} ${eyeY}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
     body += `    <path d="M${eyeR - bw} ${eyeY} Q ${eyeR} ${eyeY + 4}, ${eyeR + bw} ${eyeY}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
   } else if (expr === 'hurt') {
-    const bw = eyeRX * 1.3;
-    body += `    <path d="M${eyeL - bw} ${eyeY - 1} Q ${eyeL} ${eyeY + 5}, ${eyeL + bw} ${eyeY - 1}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
-    body += `    <path d="M${eyeR - bw} ${eyeY - 1} Q ${eyeR} ${eyeY + 5}, ${eyeR + bw} ${eyeY - 1}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
+    // Mắt nhíu đau
+    const bw = eyeRX * 1.5;
+    body += `    <path d="M${eyeL - bw} ${eyeY - 2} Q ${eyeL} ${eyeY + 5}, ${eyeL + bw} ${eyeY - 2}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
+    body += `    <path d="M${eyeR - bw} ${eyeY - 2} Q ${eyeR} ${eyeY + 5}, ${eyeR + bw} ${eyeY - 2}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
     // Mồ hôi
-    body += `    <path d="M${cx + r * 0.6} ${cy - r * 0.2} Q ${cx + r * 0.63} ${cy}, ${cx + r * 0.57} ${cy + r * 0.05}" fill="#B3E5FC" stroke="#4FC3F7" stroke-width="1" />\n`;
+    body += `    <path d="M${cx + r * 0.65} ${cy - r * 0.15} Q ${cx + r * 0.68} ${cy + r * 0.05}, ${cx + r * 0.62} ${cy + r * 0.08}" fill="#B3E5FC" stroke="#64B5F6" stroke-width="1" />\n`;
   } else if (expr === 'celebrate') {
-    // Mắt cười híp (celebrate = vui quá nên nhắm mắt cười)
-    const bw = eyeRX * 1.3;
+    // Mắt cười híp (vui sướng)
+    const bw = eyeRX * 1.5;
     body += `    <path d="M${eyeL - bw} ${eyeY + 1} Q ${eyeL} ${eyeY - 5}, ${eyeL + bw} ${eyeY + 1}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
     body += `    <path d="M${eyeR - bw} ${eyeY + 1} Q ${eyeR} ${eyeY - 5}, ${eyeR + bw} ${eyeY + 1}" fill="none" stroke="${OL}" stroke-width="3" stroke-linecap="round" />\n`;
   } else {
-    // ── MẮT MỞ TO — oval đen đơn giản, 1 highlight nhỏ ──
+    // ── MẮT MỞ — tròn đen to, 1 highlight trắng nhỏ (giống mẫu 100%) ──
     const drawEye = (ex, ey, lookUp) => {
-      const offX = lookUp ? 1 : -0.3;
-      const offY = lookUp ? -1 : 0.3;
+      const offX = lookUp ? 1 : 0;
+      const offY = lookUp ? -1 : 0;
+      // Oval đen to
       body += `    <ellipse cx="${ex + offX}" cy="${ey + offY}" rx="${eyeRX}" ry="${eyeRY}" fill="${OL}" />\n`;
-      // 1 chấm highlight nhỏ gọn
-      body += `    <ellipse cx="${ex + offX + eyeRX * 0.35}" cy="${ey + offY - eyeRY * 0.35}" rx="${eyeRX * 0.3}" ry="${eyeRY * 0.28}" fill="#FFFFFF" />\n`;
+      // Highlight tròn trắng (góc trên-phải, giống mẫu)
+      body += `    <ellipse cx="${ex + offX + eyeRX * 0.3}" cy="${ey + offY - eyeRY * 0.32}" rx="${eyeRX * 0.32}" ry="${eyeRY * 0.28}" fill="#FFFFFF" />\n`;
     };
     drawEye(eyeL, eyeY, expr === 'thinking');
     drawEye(eyeR, eyeY, expr === 'thinking');
   }
 
-  // ── Má hồng (vẽ trước miệng) ──
+  // ── Má hồng — oval hồng rõ (giống mẫu) ──
   if (showBlush) {
     body += `    <!-- Blush -->\n`;
-    const blushY = cy + r * 0.32;
-    body += `    <ellipse cx="${cx - r * 0.48}" cy="${blushY}" rx="${r * 0.14}" ry="${r * 0.09}" fill="#F48FB1" opacity="0.5" />\n`;
-    body += `    <ellipse cx="${cx + r * 0.48}" cy="${blushY}" rx="${r * 0.14}" ry="${r * 0.09}" fill="#F48FB1" opacity="0.5" />\n`;
+    const blushY = cy + r * 0.35;
+    const blushRX = r * 0.14;
+    const blushRY = r * 0.08;
+    body += `    <ellipse cx="${cx - r * 0.5}" cy="${blushY}" rx="${blushRX}" ry="${blushRY}" fill="#F48FB1" opacity="0.55" />\n`;
+    body += `    <ellipse cx="${cx + r * 0.5}" cy="${blushY}" rx="${blushRX}" ry="${blushRY}" fill="#F48FB1" opacity="0.55" />\n`;
   }
 
-  // ── Miệng ──
+  // ── Miệng — cười hở, bên trong có răng trắng + lưỡi hồng (giống mẫu 100%) ──
   body += `    <!-- Mouth -->\n`;
   const mouthY = cy + r * 0.5;
 
   if (expr === 'happy' || expr === 'celebrate') {
-    // Cười hở miệng cute — hình bán nguyệt đen, không fill đỏ/son
-    const mw = r * 0.22;  // nửa chiều rộng miệng
-    const mh = r * 0.15;  // chiều cao mở miệng
-    body += `    <path d="M${cx - mw} ${mouthY} Q ${cx} ${mouthY + mh * 2}, ${cx + mw} ${mouthY}" fill="${OL}" />\n`;
-    // Bên trong miệng tối hơn (không dùng đỏ)
-    body += `    <path d="M${cx - mw + 2} ${mouthY + 1} Q ${cx} ${mouthY + mh * 1.6}, ${cx + mw - 2} ${mouthY + 1}" fill="#4E342E" />\n`;
+    // Miệng cười hở to — bán nguyệt
+    const mw = r * 0.28;   // nửa chiều rộng
+    const mh = r * 0.22;   // chiều cao mở
+    // Hình miệng đen (outline)
+    body += `    <path d="M${cx - mw} ${mouthY} Q ${cx} ${mouthY + mh * 2.2}, ${cx + mw} ${mouthY} Z" fill="${OL}" />\n`;
+    // Khoang miệng đỏ sẫm (bên trong)
+    body += `    <path d="M${cx - mw + 2} ${mouthY + 1} Q ${cx} ${mouthY + mh * 2}, ${cx + mw - 2} ${mouthY + 1} Z" fill="#B71C1C" />\n`;
+    // Răng trắng trên (hình bán nguyệt nhỏ sát mép trên)
+    body += `    <path d="M${cx - mw + 3} ${mouthY + 1} Q ${cx} ${mouthY + mh * 0.7}, ${cx + mw - 3} ${mouthY + 1} Z" fill="#FFFFFF" />\n`;
+    // Lưỡi hồng tròn ở dưới
+    body += `    <ellipse cx="${cx}" cy="${mouthY + mh * 1.4}" rx="${mw * 0.5}" ry="${mh * 0.45}" fill="#E57373" />\n`;
   } else if (expr === 'hurt') {
-    const mw = r * 0.12;
-    body += `    <path d="M${cx - mw} ${mouthY + 3} Q ${cx} ${mouthY - 1}, ${cx + mw} ${mouthY + 3}" fill="none" stroke="${OL}" stroke-width="2.5" stroke-linecap="round" />\n`;
+    // Miệng méo
+    const mw = r * 0.14;
+    body += `    <path d="M${cx - mw} ${mouthY + 3} Q ${cx} ${mouthY - 2}, ${cx + mw} ${mouthY + 3}" fill="none" stroke="${OL}" stroke-width="2.5" stroke-linecap="round" />\n`;
   } else if (expr === 'serious') {
-    body += `    <line x1="${cx - r * 0.1}" y1="${mouthY}" x2="${cx + r * 0.1}" y2="${mouthY}" stroke="${OL}" stroke-width="2.5" stroke-linecap="round" />\n`;
+    // Mím miệng
+    body += `    <line x1="${cx - r * 0.12}" y1="${mouthY}" x2="${cx + r * 0.12}" y2="${mouthY}" stroke="${OL}" stroke-width="2.5" stroke-linecap="round" />\n`;
   } else {
-    // Miệng nhỏ cute (default / thinking)
-    const mw = r * 0.12;
+    // Miệng nhỏ cười nhẹ (thinking, default)
+    const mw = r * 0.14;
     body += `    <path d="M${cx - mw} ${mouthY} Q ${cx} ${mouthY + r * 0.1}, ${cx + mw} ${mouthY}" fill="none" stroke="${OL}" stroke-width="2.5" stroke-linecap="round" />\n`;
   }
 
   // ── Celebrate sparkle ──
   if (expr === 'celebrate') {
-    body += sparkle(cx - r * 0.7, cy - r * 0.5, 5, '#FFD54F');
-    body += sparkle(cx + r * 0.8, cy - r * 0.4, 4, '#FFD54F');
+    body += sparkle(cx - r * 0.8, cy - r * 0.5, 5, '#FFD54F');
+    body += sparkle(cx + r * 0.85, cy - r * 0.4, 4, '#FFD54F');
   }
 
   return { defs, body };
 }
 
 // ═══════════════════════════════════════════════════════════
-// CHIBI BODY — Thân rất nhỏ so với đầu
+// CHIBI BODY — Áo đen + dải vàng cam chéo (giống mẫu 100%)
 // ═══════════════════════════════════════════════════════════
 
 function chibiBody(opts = {}) {
   const cx = opts.cx || 64;
-  const torsoY = opts.torsoY || 78;
-  const skin = PALETTE.hero.skin;
-  const pants = opts.pantsColor === 'green' ? PALETTE.hero.pantsAlt : PALETTE.hero.pants;
+  const torsoY = opts.torsoY || 76;
   const OL = '#1A1A1A';
   const OLW = 3;
 
   let defs = '';
   let body = '';
 
-  defs += linearGradient('bodyGrad', [skin.highlight, skin.base, skin.shadow]) + '\n';
-  defs += linearGradient('pantsGrad', [pants.highlight, pants.base, pants.shadow]) + '\n';
+  // Gradient cho dải vàng cam
+  defs += linearGradient('sashGrad', ['#FFB300', '#FF8F00', '#E65100'], '0%', '0%', '100%', '100%') + '\n';
 
-  // ── Thân trên (nhỏ gọn) ──
-  const tw = 14;  // nửa chiều rộng thân
-  const th = 12;  // chiều cao thân
+  // ── Thân: áo đen tròn ──
+  const tw = 16;
+  const th = 18;
 
-  body += `    <!-- Torso -->\n`;
-  body += `    <path d="M${cx - tw} ${torsoY}
-      Q ${cx - tw - 1} ${torsoY + th * 0.5}, ${cx - tw + 2} ${torsoY + th}
-      Q ${cx} ${torsoY + th + 2}, ${cx + tw - 2} ${torsoY + th}
-      Q ${cx + tw + 1} ${torsoY + th * 0.5}, ${cx + tw} ${torsoY} Z"
-      fill="url(#bodyGrad)" stroke="${OL}" stroke-width="${OLW}" />\n`;
+  body += `    <!-- Body robe -->\n`;
+  body += `    <path d="
+      M${cx - tw} ${torsoY}
+      Q ${cx - tw - 3} ${torsoY + th * 0.5}, ${cx - tw + 1} ${torsoY + th}
+      Q ${cx} ${torsoY + th + 3}, ${cx + tw - 1} ${torsoY + th}
+      Q ${cx + tw + 3} ${torsoY + th * 0.5}, ${cx + tw} ${torsoY}
+      Z"
+      fill="#2C2C2C" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  // ── Quần đùi ──
-  const pantsY = torsoY + th - 2;
-  const ph = 8;
+  // ── Dải vàng cam chéo (từ vai trái xuống hông phải) ──
+  body += `    <!-- Orange sash -->\n`;
+  const sashW = 7;
+  body += `    <path d="
+      M${cx - tw + 2} ${torsoY + 1}
+      L${cx + tw - 3} ${torsoY + th * 0.55}
+      L${cx + tw - 3} ${torsoY + th * 0.55 + sashW}
+      L${cx - tw + 2} ${torsoY + 1 + sashW}
+      Z"
+      fill="url(#sashGrad)" stroke="${OL}" stroke-width="1.5" />\n`;
 
-  body += `    <!-- Pants -->\n`;
-  body += `    <path d="M${cx - tw + 2} ${pantsY}
-      L${cx - tw + 1} ${pantsY + ph}
-      Q ${cx - 2} ${pantsY + ph + 2}, ${cx} ${pantsY + ph - 1}
-      Q ${cx + 2} ${pantsY + ph + 2}, ${cx + tw - 1} ${pantsY + ph}
-      L${cx + tw - 2} ${pantsY} Z"
-      fill="url(#pantsGrad)" stroke="${OL}" stroke-width="${OLW}" />\n`;
+  // Nếp gấp dải vàng
+  body += `    <line x1="${cx - 4}" y1="${torsoY + 6}" x2="${cx + 6}" y2="${torsoY + 12}" stroke="#E65100" stroke-width="1" opacity="0.5" />\n`;
+  body += `    <line x1="${cx - 8}" y1="${torsoY + 8}" x2="${cx + 2}" y2="${torsoY + 14}" stroke="#E65100" stroke-width="0.8" opacity="0.4" />\n`;
 
-  // Dây lưng
-  body += `    <line x1="${cx - tw + 3}" y1="${pantsY + 1}" x2="${cx + tw - 3}" y2="${pantsY + 1}" stroke="${pants.shadow}" stroke-width="1.5" stroke-linecap="round" />\n`;
+  // ── Phần dưới áo (vạt áo) ──
+  const bottomY = torsoY + th;
+  body += `    <path d="
+      M${cx - tw + 1} ${bottomY}
+      Q ${cx - tw - 1} ${bottomY + 5}, ${cx - tw + 3} ${bottomY + 8}
+      Q ${cx} ${bottomY + 10}, ${cx + tw - 3} ${bottomY + 8}
+      Q ${cx + tw + 1} ${bottomY + 5}, ${cx + tw - 1} ${bottomY}
+      Z"
+      fill="#2C2C2C" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  return { defs, body, pantsBottom: pantsY + ph };
+  return { defs, body, pantsBottom: bottomY + 8 };
 }
 
 // ═══════════════════════════════════════════════════════════
-// CHIBI ARMS — Tay ngắn cũn
+// CHIBI ARMS — Tay ngắn, ẩn sau áo (giống mẫu)
 // ═══════════════════════════════════════════════════════════
 
 function chibiArms(opts = {}) {
@@ -253,10 +250,12 @@ function chibiArms(opts = {}) {
   const sy = opts.shoulderY || 80;
   const pose = opts.pose || 'idle';
   const frame = opts.frame || 0;
-  const skin = PALETTE.hero.skin;
   const OL = '#1A1A1A';
-  const armLen = 12;
   const armW = 5;
+  const armLen = 10;
+  // Tay cùng màu áo (đen)
+  const armColor = '#2C2C2C';
+  const skin = PALETTE.hero.skin;
 
   let defs = '';
   let body = '';
@@ -264,60 +263,62 @@ function chibiArms(opts = {}) {
 
   function arm(sx2, sy2, ex, ey) {
     body += `    <line x1="${sx2}" y1="${sy2}" x2="${ex}" y2="${ey}" stroke="${OL}" stroke-width="${armW + 3}" stroke-linecap="round" />\n`;
-    body += `    <line x1="${sx2}" y1="${sy2}" x2="${ex}" y2="${ey}" stroke="${skin.base}" stroke-width="${armW}" stroke-linecap="round" />\n`;
-    body += `    <circle cx="${ex}" cy="${ey}" r="${armW * 0.5}" fill="${skin.base}" stroke="${OL}" stroke-width="2" />\n`;
+    body += `    <line x1="${sx2}" y1="${sy2}" x2="${ex}" y2="${ey}" stroke="${armColor}" stroke-width="${armW}" stroke-linecap="round" />\n`;
+    // Bàn tay nhỏ (da)
+    body += `    <circle cx="${ex}" cy="${ey}" r="${armW * 0.45}" fill="${skin.base}" stroke="${OL}" stroke-width="2" />\n`;
   }
 
-  const sL = cx - 15;
-  const sR = cx + 15;
+  const sL = cx - 17;
+  const sR = cx + 17;
 
   if (pose === 'idle') {
     const sway = Math.sin(frame * Math.PI / 2) * 1;
-    arm(sL, sy, sL - 4, sy + armLen + sway);
-    arm(sR, sy, sR + 4, sy + armLen - sway);
+    arm(sL, sy, sL - 3, sy + armLen + sway);
+    arm(sR, sy, sR + 3, sy + armLen - sway);
   } else if (pose === 'raise') {
-    arm(sL, sy, sL - 8, sy - armLen + 3);
-    arm(sR, sy, sR + 8, sy - armLen + 3);
+    arm(sL, sy, sL - 7, sy - armLen + 2);
+    arm(sR, sy, sR + 7, sy - armLen + 2);
   } else if (pose === 'aim_bow') {
-    arm(sL, sy, sL - 6, sy + 3);
-    arm(sR, sy, sR + 10, sy + 1);
+    arm(sL, sy, sL - 5, sy + 3);
+    arm(sR, sy, sR + 9, sy + 1);
   } else if (pose === 'hold_book') {
-    arm(sL, sy, cx - 5, sy + 5);
-    arm(sR, sy, cx + 5, sy + 5);
+    arm(sL, sy, cx - 5, sy + 4);
+    arm(sR, sy, cx + 5, sy + 4);
   } else if (pose === 'swing_down') {
     const ang = (frame / 3) * Math.PI * 0.6;
-    arm(sL, sy, sL - 4, sy + armLen);
-    arm(sR, sy, sR + Math.sin(ang) * armLen, sy - Math.cos(ang) * armLen + 8);
+    arm(sL, sy, sL - 3, sy + armLen);
+    arm(sR, sy, sR + Math.sin(ang) * armLen, sy - Math.cos(ang) * armLen + 7);
   } else {
-    arm(sL, sy, sL - 4, sy + armLen);
-    arm(sR, sy, sR + 4, sy + armLen);
+    arm(sL, sy, sL - 3, sy + armLen);
+    arm(sR, sy, sR + 3, sy + armLen);
   }
 
   return { defs, body };
 }
 
 // ═══════════════════════════════════════════════════════════
-// CHIBI LEGS — Chân ngắn
+// CHIBI LEGS — Chân ngắn cũn, tối (giống mẫu)
 // ═══════════════════════════════════════════════════════════
 
 function chibiLegs(opts = {}) {
   const cx = opts.cx || 64;
-  const hipY = opts.hipY || 96;
+  const hipY = opts.hipY || 100;
   const pose = opts.pose || 'idle';
   const frame = opts.frame || 0;
-  const skin = PALETTE.hero.skin;
   const OL = '#1A1A1A';
-  const legLen = 10;
+  const legLen = 8;
   const legW = 5;
+  const legColor = '#2C2C2C';
+  const skin = PALETTE.hero.skin;
 
   let body = '';
   body += `    <!-- Legs -->\n`;
 
   function leg(sx, sy, ex, ey) {
     body += `    <line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}" stroke="${OL}" stroke-width="${legW + 3}" stroke-linecap="round" />\n`;
-    body += `    <line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}" stroke="${skin.base}" stroke-width="${legW}" stroke-linecap="round" />\n`;
+    body += `    <line x1="${sx}" y1="${sy}" x2="${ex}" y2="${ey}" stroke="${legColor}" stroke-width="${legW}" stroke-linecap="round" />\n`;
     // Bàn chân
-    body += `    <ellipse cx="${ex}" cy="${ey + 1}" rx="${legW * 0.65}" ry="${legW * 0.4}" fill="${skin.shadow}" stroke="${OL}" stroke-width="2" />\n`;
+    body += `    <ellipse cx="${ex}" cy="${ey + 1}" rx="${legW * 0.6}" ry="${legW * 0.35}" fill="${skin.shadow}" stroke="${OL}" stroke-width="1.8" />\n`;
   }
 
   const lL = cx - 5;
@@ -327,12 +328,12 @@ function chibiLegs(opts = {}) {
     leg(lL, hipY, lL, hipY + legLen);
     leg(lR, hipY, lR, hipY + legLen);
   } else if (pose === 'sit') {
-    leg(lL, hipY, lL - 5, hipY + 4);
-    leg(lR, hipY, lR + 5, hipY + 4);
+    leg(lL, hipY, lL - 5, hipY + 3);
+    leg(lR, hipY, lR + 5, hipY + 3);
   } else if (pose.startsWith('run')) {
     const phase = frame * (Math.PI / 3);
-    const sL = Math.sin(phase) * 6;
-    const sR = Math.sin(phase + Math.PI) * 6;
+    const sL = Math.sin(phase) * 5;
+    const sR = Math.sin(phase + Math.PI) * 5;
     leg(lL, hipY, lL + sL, hipY + legLen - Math.abs(sL) * 0.3);
     leg(lR, hipY, lR + sR, hipY + legLen - Math.abs(sR) * 0.3);
   } else {
@@ -367,7 +368,7 @@ function blurFilter(id = 'blur', stdDev = 4) {
 }
 
 // ═══════════════════════════════════════════════════════════
-// FULL HERO ASSEMBLY — Tỉ lệ đầu:thân ~3:1
+// FULL HERO ASSEMBLY
 // ═══════════════════════════════════════════════════════════
 
 function assembleHero(opts = {}) {
@@ -375,10 +376,9 @@ function assembleHero(opts = {}) {
   const bodyOffsetY = opts.bodyOffsetY || 0;
   const cx = 64;
 
-  // Đầu to chiếm phần lớn, thân nhỏ phía dưới
-  const headR = 36;
-  const headCY = 38 + bodyOffsetY * 0.2;
-  const torsoY = 72 + bodyOffsetY;
+  const headR = 38;
+  const headCY = 40 + bodyOffsetY * 0.2;
+  const torsoY = 74 + bodyOffsetY;
 
   let allDefs = '';
   let allBody = '';
@@ -386,18 +386,18 @@ function assembleHero(opts = {}) {
   allDefs += blurFilter() + '\n';
 
   // Shadow
-  allBody += shadowBlob(cx, 118, 16, 4);
+  allBody += shadowBlob(cx, 120, 16, 4);
 
   // Legs
   const legs = chibiLegs({
     cx,
-    hipY: torsoY + 18 + bodyOffsetY * 0.3,
+    hipY: torsoY + 24 + bodyOffsetY * 0.3,
     pose: opts.legPose || 'idle',
     frame,
   });
   allBody += legs.body;
 
-  // Body
+  // Body (robe)
   const torso = chibiBody({
     cx,
     torsoY,
@@ -409,7 +409,7 @@ function assembleHero(opts = {}) {
   // Arms
   const arms = chibiArms({
     cx,
-    shoulderY: torsoY + 2,
+    shoulderY: torsoY + 3,
     pose: opts.armPose || 'idle',
     frame,
   });
