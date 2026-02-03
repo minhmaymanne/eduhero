@@ -133,10 +133,10 @@ function chibiHead(opts = {}) {
   // Mặc định: mắt MỞ TO, tròn, long lanh (anime-style big eyes)
   // Chỉ nhắm khi blink hoặc hurt
   body += `    <!-- Eyes -->\n`;
-  const eyeL = cx - r * 0.32;
-  const eyeR = cx + r * 0.32;
+  const eyeL = cx - r * 0.42;   // xa nhau hơn, gần tai
+  const eyeR = cx + r * 0.42;
   const eyeY = cy + r * 0.05;
-  const eyeSize = 7.5;
+  const eyeSize = 8.5;          // to hơn, ấn tượng thông thái
 
   if (expr === 'blink') {
     // Mắt nhắm (chớp mắt — đường cong nhẹ)
@@ -179,7 +179,7 @@ function chibiHead(opts = {}) {
 
   // ── Miệng ──
   body += `    <!-- Mouth -->\n`;
-  const mouthY = cy + r * 0.38;
+  const mouthY = cy + r * 0.58;  // xuống gần cằm hơn
 
   if (expr === 'happy' || expr === 'celebrate') {
     // Cười cute — đường cong đơn giản, không fill đỏ
