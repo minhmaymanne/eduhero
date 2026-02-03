@@ -1,0 +1,317 @@
+{
+  "sprint": 1,
+  "generated": "2026-02-03T11:12:05.207Z",
+  "assets": [
+    {
+      "name": "hero_attack_ranged_f0",
+      "svg": "hero_attack_ranged_f0.svg",
+      "png": "hero_attack_ranged_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_attack_ranged_f1",
+      "svg": "hero_attack_ranged_f1.svg",
+      "png": "hero_attack_ranged_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_attack_ranged_f2",
+      "svg": "hero_attack_ranged_f2.svg",
+      "png": "hero_attack_ranged_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_attack_ranged_f3",
+      "svg": "hero_attack_ranged_f3.svg",
+      "png": "hero_attack_ranged_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_death_f0",
+      "svg": "hero_death_f0.svg",
+      "png": "hero_death_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_death_f1",
+      "svg": "hero_death_f1.svg",
+      "png": "hero_death_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_death_f2",
+      "svg": "hero_death_f2.svg",
+      "png": "hero_death_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_death_f3",
+      "svg": "hero_death_f3.svg",
+      "png": "hero_death_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_face_celebrate",
+      "svg": "hero_face_celebrate.svg",
+      "png": "hero_face_celebrate.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_happy",
+      "svg": "hero_face_happy.svg",
+      "png": "hero_face_happy.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_hurt",
+      "svg": "hero_face_hurt.svg",
+      "png": "hero_face_hurt.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_serious",
+      "svg": "hero_face_serious.svg",
+      "png": "hero_face_serious.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_face_thinking",
+      "svg": "hero_face_thinking.svg",
+      "png": "hero_face_thinking.png",
+      "width": 64,
+      "height": 64
+    },
+    {
+      "name": "hero_hit_f0",
+      "svg": "hero_hit_f0.svg",
+      "png": "hero_hit_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_hit_f1",
+      "svg": "hero_hit_f1.svg",
+      "png": "hero_hit_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_idle_f0",
+      "svg": "hero_idle_f0.svg",
+      "png": "hero_idle_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_idle_f1",
+      "svg": "hero_idle_f1.svg",
+      "png": "hero_idle_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_idle_f2",
+      "svg": "hero_idle_f2.svg",
+      "png": "hero_idle_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_idle_f3",
+      "svg": "hero_idle_f3.svg",
+      "png": "hero_idle_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_down_f0",
+      "svg": "hero_run_down_f0.svg",
+      "png": "hero_run_down_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_down_f1",
+      "svg": "hero_run_down_f1.svg",
+      "png": "hero_run_down_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_down_f2",
+      "svg": "hero_run_down_f2.svg",
+      "png": "hero_run_down_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_down_f3",
+      "svg": "hero_run_down_f3.svg",
+      "png": "hero_run_down_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_down_f4",
+      "svg": "hero_run_down_f4.svg",
+      "png": "hero_run_down_f4.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_down_f5",
+      "svg": "hero_run_down_f5.svg",
+      "png": "hero_run_down_f5.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_left_f0",
+      "svg": "hero_run_left_f0.svg",
+      "png": "hero_run_left_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_left_f1",
+      "svg": "hero_run_left_f1.svg",
+      "png": "hero_run_left_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_left_f2",
+      "svg": "hero_run_left_f2.svg",
+      "png": "hero_run_left_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_left_f3",
+      "svg": "hero_run_left_f3.svg",
+      "png": "hero_run_left_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_left_f4",
+      "svg": "hero_run_left_f4.svg",
+      "png": "hero_run_left_f4.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_left_f5",
+      "svg": "hero_run_left_f5.svg",
+      "png": "hero_run_left_f5.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_right_f0",
+      "svg": "hero_run_right_f0.svg",
+      "png": "hero_run_right_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_right_f1",
+      "svg": "hero_run_right_f1.svg",
+      "png": "hero_run_right_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_right_f2",
+      "svg": "hero_run_right_f2.svg",
+      "png": "hero_run_right_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_right_f3",
+      "svg": "hero_run_right_f3.svg",
+      "png": "hero_run_right_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_right_f4",
+      "svg": "hero_run_right_f4.svg",
+      "png": "hero_run_right_f4.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_right_f5",
+      "svg": "hero_run_right_f5.svg",
+      "png": "hero_run_right_f5.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_up_f0",
+      "svg": "hero_run_up_f0.svg",
+      "png": "hero_run_up_f0.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_up_f1",
+      "svg": "hero_run_up_f1.svg",
+      "png": "hero_run_up_f1.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_up_f2",
+      "svg": "hero_run_up_f2.svg",
+      "png": "hero_run_up_f2.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_up_f3",
+      "svg": "hero_run_up_f3.svg",
+      "png": "hero_run_up_f3.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_up_f4",
+      "svg": "hero_run_up_f4.svg",
+      "png": "hero_run_up_f4.png",
+      "width": 128,
+      "height": 128
+    },
+    {
+      "name": "hero_run_up_f5",
+      "svg": "hero_run_up_f5.svg",
+      "png": "hero_run_up_f5.png",
+      "width": 128,
+      "height": 128
+    }
+  ],
+  "spriteSheets": [
+    "hero_idle_sheet.png",
+    "hero_run_down_sheet.png",
+    "hero_run_up_sheet.png",
+    "hero_run_left_sheet.png",
+    "hero_run_right_sheet.png",
+    "hero_attack_ranged_sheet.png",
+    "hero_hit_sheet.png",
+    "hero_death_sheet.png"
+  ]
+}

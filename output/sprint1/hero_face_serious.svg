@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" id="face_serious">
+  <defs>
+    <radialGradient id="headGrad" cx="48%" cy="42%" r="58%" fx="48%" fy="42%">
+      <stop offset="0%" stop-color="#FFE4C4" />
+      <stop offset="50%" stop-color="#F5D0A9" />
+      <stop offset="100%" stop-color="#D4A574" />
+    </radialGradient>
+    <radialGradient id="headGradHair" cx="45%" cy="30%" r="65%" fx="45%" fy="30%">
+      <stop offset="0%" stop-color="#4A4A4A" />
+      <stop offset="50%" stop-color="#2C2C2C" />
+      <stop offset="100%" stop-color="#1A1A1A" />
+    </radialGradient>
+
+  </defs>
+    <!-- Ears -->
+    <ellipse cx="6.296" cy="39.24" rx="4.32" ry="5.94" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
+    <ellipse cx="6.296" cy="39.24" rx="1.9440000000000002" ry="3.2670000000000003" fill="#D4A574" opacity="0.25" />
+    <ellipse cx="57.704" cy="39.24" rx="4.32" ry="5.94" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
+    <ellipse cx="57.704" cy="39.24" rx="1.9440000000000002" ry="3.2670000000000003" fill="#D4A574" opacity="0.25" />
+    <!-- Head -->
+    <rect x="5" y="12.239999999999998" width="54" height="47.52" rx="18.9" ry="18.9" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
+    <!-- Hair: quả đào -->
+    <path d="M18.5 15.75
+      Q 26.6 11.7, 33.35 12.239999999999998
+      Q 40.1 13.05, 45.5 17.1
+      Q 40.1 14.399999999999999, 33.35 13.860000000000003
+      Q 26.6 13.32, 18.5 15.75 Z"
+      fill="url(#headGradHair)" opacity="0.4" />
+    <path d="
+      M33.35 18.288
+      Q 20.876 16.020000000000003,
+        24.278 8.082
+      Q 27.68 1.2780000000000005,
+        33.917 4.6800000000000015
+      Q 40.154 0.7110000000000021,
+        43.556 8.649000000000001
+      Q 45.824 16.020000000000003,
+        36.752 21.123
+      Q 35.051 19.989,
+        33.35 18.288 Z"
+      fill="url(#headGradHair)" stroke="#1A1A1A" stroke-width="3.5" />
+    <path d="M33.917 4.6800000000000015
+      Q 33.917 8.649000000000001,
+        33.35 10.917000000000002"
+      fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />
+    <ellipse cx="29.948" cy="9.216000000000001" rx="2.2680000000000002" ry="3.1752000000000002" fill="#4A4A4A" opacity="0.2" transform="rotate(-15 29.948 9.216000000000001)" />
+    <!-- Eyes -->
+    <ellipse cx="23.09" cy="39.24" rx="4.590000000000001" ry="5.4" fill="#1A1A1A" />
+    <ellipse cx="24.467" cy="37.512" rx="1.4688000000000003" ry="1.5120000000000002" fill="#FFFFFF" />
+    <ellipse cx="40.91" cy="39.24" rx="4.590000000000001" ry="5.4" fill="#1A1A1A" />
+    <ellipse cx="42.287" cy="37.512" rx="1.4688000000000003" ry="1.5120000000000002" fill="#FFFFFF" />
+    <!-- Blush -->
+    <ellipse cx="19.04" cy="46.26" rx="3.2399999999999998" ry="1.8900000000000001" fill="#F48FB1" opacity="0.5" />
+    <ellipse cx="44.96" cy="46.26" rx="3.2399999999999998" ry="1.8900000000000001" fill="#F48FB1" opacity="0.5" />
+    <!-- Mouth -->
+    <line x1="28.76" y1="49.5" x2="35.24" y2="49.5" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" />
+
+</svg>

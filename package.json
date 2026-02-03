@@ -6,10 +6,11 @@
     "generate": "node scripts/generate_svg.js",
     "build": "node scripts/build_sprites.js",
     "sprint0": "node scripts/generate_svg.js --sprint 0 && node scripts/build_sprites.js --sprint 0",
-    "preview": "open preview/sprint0.html || xdg-open preview/sprint0.html"
+    "sprint1": "node scripts/generate_svg.js --sprint 1 && node scripts/build_sprites.js --sprint 1",
+    "preview": "open preview/sprint0.html || xdg-open preview/sprint0.html",
+    "preview1": "open preview/sprint1.html || xdg-open preview/sprint1.html"
   },
   "dependencies": {
-    "canvas": "^2.11.2",
     "sharp": "^0.33.5"
   },
   "engines": {
