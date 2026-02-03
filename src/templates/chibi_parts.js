@@ -79,9 +79,11 @@ function chibiHead(opts = {}) {
   body += `    <ellipse cx="${cx + r - earW * 0.3}" cy="${earY}" rx="${earW}" ry="${earH}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
   body += `    <ellipse cx="${cx + r - earW * 0.3}" cy="${earY}" rx="${earW * 0.45}" ry="${earH * 0.55}" fill="${skin.shadow}" opacity="0.25" />\n`;
 
-  // ── Đầu tròn ──
+  // ── Đầu hơi vuông bo tròn (giống mẫu — không phải hình tròn hoàn toàn) ──
   body += `    <!-- Head -->\n`;
-  body += `    <ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r * 0.96}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
+  const ry = r * 0.88;  // chiều dọc ngắn hơn chiều ngang → hơi vuông
+  const rc = r * 0.7;   // bo góc
+  body += `    <rect x="${cx - r}" y="${cy - ry}" width="${r * 2}" height="${ry * 2}" rx="${rc}" ry="${rc}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
   // ── Tóc quả đào chú tiểu ──
   body += `    <!-- Hair: quả đào -->\n`;
@@ -161,15 +163,7 @@ function chibiHead(opts = {}) {
     drawEye(eyeR, eyeY, expr === 'thinking');
   }
 
-  // ── Má hồng — oval hồng rõ (giống mẫu) ──
-  if (showBlush) {
-    body += `    <!-- Blush -->\n`;
-    const blushY = cy + r * 0.35;
-    const blushRX = r * 0.14;
-    const blushRY = r * 0.08;
-    body += `    <ellipse cx="${cx - r * 0.5}" cy="${blushY}" rx="${blushRX}" ry="${blushRY}" fill="#F48FB1" opacity="0.55" />\n`;
-    body += `    <ellipse cx="${cx + r * 0.5}" cy="${blushY}" rx="${blushRX}" ry="${blushRY}" fill="#F48FB1" opacity="0.55" />\n`;
-  }
+  // (không có chấm hồng má)
 
   // ── Miệng — cười hở, bên trong có răng trắng + lưỡi hồng (giống mẫu 100%) ──
   body += `    <!-- Mouth -->\n`;

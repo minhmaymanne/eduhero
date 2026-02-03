@@ -62,7 +62,7 @@
     <ellipse cx="100.176" cy="44.56" rx="6.08" ry="8.36" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
     <ellipse cx="100.176" cy="44.56" rx="2.736" ry="4.598" fill="#D4A574" opacity="0.25" />
     <!-- Head -->
-    <ellipse cx="64" cy="40" rx="38" ry="36.48" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
+    <rect x="26" y="6.560000000000002" width="76" height="66.88" rx="26.599999999999998" ry="26.599999999999998" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
     <!-- Hair: quả đào -->
     <path d="M45 11.5
       Q 56.4 5.799999999999997, 65.9 6.560000000000002
@@ -91,9 +91,6 @@
     <!-- Eyes -->
     <path d="M41.769999999999996 44.56 Q 51.46 48.56, 61.150000000000006 44.56" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" />
     <path d="M66.85000000000001 44.56 Q 76.54 48.56, 86.23 44.56" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" />
-    <!-- Blush -->
-    <ellipse cx="45" cy="53.3" rx="5.32" ry="3.04" fill="#F48FB1" opacity="0.55" />
-    <ellipse cx="83" cy="53.3" rx="5.32" ry="3.04" fill="#F48FB1" opacity="0.55" />
     <!-- Mouth -->
     <path d="M58.68 59 Q 64 62.8, 69.32 59" fill="none" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" />
 
