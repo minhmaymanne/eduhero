@@ -65,8 +65,9 @@ function chibiHead(opts = {}) {
 
   // Skin gradient
   defs += radialGradient(gId, [skin.highlight, skin.base, skin.shadow], '48%', '42%', '58%') + '\n';
-  // Hair gradient (xám)
-  defs += radialGradient(`${gId}Hair`, ['#B0B0B0', '#808080', '#606060'], '55%', '30%', '60%') + '\n';
+  // Hair gradient (đen)
+  const hair = PALETTE.hero.hair;
+  defs += radialGradient(`${gId}Hair`, [hair.highlight, hair.base, hair.shadow], '45%', '30%', '65%') + '\n';
 
   // ── Tai (nằm sau đầu) ──
   body += `    <!-- Ears -->\n`;
@@ -82,20 +83,44 @@ function chibiHead(opts = {}) {
   body += `    <!-- Head -->\n`;
   body += `    <ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r * 0.96}" fill="url(#${gId})" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  // ── Tóc: mũ xám trơn phủ nửa trên đầu (giống mẫu 100%) ──
-  body += `    <!-- Hair cap -->\n`;
-  const hairY = cy - r * 0.15;  // đường chân tóc ngang giữa trán
+  // ── Tóc quả đào chú tiểu ──
+  body += `    <!-- Hair: quả đào -->\n`;
+
+  // Chân tóc mỏng trên trán
+  body += `    <path d="M${cx - r * 0.5} ${cy - r * 0.75}
+      Q ${cx - r * 0.2} ${cy - r * 0.9}, ${cx + r * 0.05} ${cy - r * 0.88}
+      Q ${cx + r * 0.3} ${cy - r * 0.85}, ${cx + r * 0.5} ${cy - r * 0.7}
+      Q ${cx + r * 0.3} ${cy - r * 0.8}, ${cx + r * 0.05} ${cy - r * 0.82}
+      Q ${cx - r * 0.2} ${cy - r * 0.84}, ${cx - r * 0.5} ${cy - r * 0.75} Z"
+      fill="url(#${gId}Hair)" opacity="0.4" />\n`;
+
+  // Búi tóc quả đào (trái tim lệch phải)
+  const peachCX = cx + r * 0.05;
+  const peachTopY = cy - r * 0.95;
+  const ps = r * 0.42;
+
   body += `    <path d="
-      M${cx - r + 1} ${hairY}
-      Q ${cx - r} ${cy - r * 0.5}, ${cx - r * 0.7} ${cy - r * 0.88}
-      Q ${cx - r * 0.3} ${cy - r * 1.05}, ${cx} ${cy - r * 0.98}
-      Q ${cx + r * 0.3} ${cy - r * 1.05}, ${cx + r * 0.7} ${cy - r * 0.88}
-      Q ${cx + r} ${cy - r * 0.5}, ${cx + r - 1} ${hairY}
-      Z"
+      M${peachCX} ${peachTopY + ps * 0.7}
+      Q ${peachCX - ps * 1.1} ${peachTopY + ps * 0.5},
+        ${peachCX - ps * 0.8} ${peachTopY - ps * 0.2}
+      Q ${peachCX - ps * 0.5} ${peachTopY - ps * 0.8},
+        ${peachCX + ps * 0.05} ${peachTopY - ps * 0.5}
+      Q ${peachCX + ps * 0.6} ${peachTopY - ps * 0.85},
+        ${peachCX + ps * 0.9} ${peachTopY - ps * 0.15}
+      Q ${peachCX + ps * 1.1} ${peachTopY + ps * 0.5},
+        ${peachCX + ps * 0.3} ${peachTopY + ps * 0.95}
+      Q ${peachCX + ps * 0.15} ${peachTopY + ps * 0.85},
+        ${peachCX} ${peachTopY + ps * 0.7} Z"
       fill="url(#${gId}Hair)" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  // Highlight tròn trên tóc (giống mẫu — chấm sáng trắng)
-  body += `    <ellipse cx="${cx + r * 0.2}" cy="${cy - r * 0.7}" rx="${r * 0.15}" ry="${r * 0.15}" fill="#FFFFFF" opacity="0.55" />\n`;
+  // Rãnh trái tim
+  body += `    <path d="M${peachCX + ps * 0.05} ${peachTopY - ps * 0.5}
+      Q ${peachCX + ps * 0.05} ${peachTopY - ps * 0.15},
+        ${peachCX} ${peachTopY + ps * 0.05}"
+      fill="none" stroke="${hair.shadow}" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />\n`;
+
+  // Highlight tóc
+  body += `    <ellipse cx="${peachCX - ps * 0.3}" cy="${peachTopY - ps * 0.1}" rx="${ps * 0.2}" ry="${ps * 0.28}" fill="${hair.highlight}" opacity="0.2" transform="rotate(-15 ${peachCX - ps * 0.3} ${peachTopY - ps * 0.1})" />\n`;
 
   // ── Mắt ──
   body += `    <!-- Eyes -->\n`;
@@ -185,64 +210,58 @@ function chibiHead(opts = {}) {
 }
 
 // ═══════════════════════════════════════════════════════════
-// CHIBI BODY — Áo đen + dải vàng cam chéo (giống mẫu 100%)
+// CHIBI BODY — Ở trần + quần đùi
 // ═══════════════════════════════════════════════════════════
 
 function chibiBody(opts = {}) {
   const cx = opts.cx || 64;
   const torsoY = opts.torsoY || 76;
+  const skin = PALETTE.hero.skin;
+  const pants = opts.pantsColor === 'green' ? PALETTE.hero.pantsAlt : PALETTE.hero.pants;
   const OL = '#1A1A1A';
   const OLW = 3;
 
   let defs = '';
   let body = '';
 
-  // Gradient cho dải vàng cam
-  defs += linearGradient('sashGrad', ['#FFB300', '#FF8F00', '#E65100'], '0%', '0%', '100%', '100%') + '\n';
+  defs += linearGradient('bodyGrad', [skin.highlight, skin.base, skin.shadow]) + '\n';
+  defs += linearGradient('pantsGrad', [pants.highlight, pants.base, pants.shadow]) + '\n';
 
-  // ── Thân: áo đen tròn ──
-  const tw = 16;
-  const th = 18;
+  // ── Thân trên (ở trần, bụng tròn) ──
+  const tw = 15;
+  const th = 14;
 
-  body += `    <!-- Body robe -->\n`;
+  body += `    <!-- Torso -->\n`;
   body += `    <path d="
       M${cx - tw} ${torsoY}
-      Q ${cx - tw - 3} ${torsoY + th * 0.5}, ${cx - tw + 1} ${torsoY + th}
+      Q ${cx - tw - 2} ${torsoY + th * 0.5}, ${cx - tw + 1} ${torsoY + th}
       Q ${cx} ${torsoY + th + 3}, ${cx + tw - 1} ${torsoY + th}
-      Q ${cx + tw + 3} ${torsoY + th * 0.5}, ${cx + tw} ${torsoY}
+      Q ${cx + tw + 2} ${torsoY + th * 0.5}, ${cx + tw} ${torsoY}
       Z"
-      fill="#2C2C2C" stroke="${OL}" stroke-width="${OLW}" />\n`;
+      fill="url(#bodyGrad)" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  // ── Dải vàng cam chéo (từ vai trái xuống hông phải) ──
-  body += `    <!-- Orange sash -->\n`;
-  const sashW = 7;
+  // ── Quần đùi ──
+  const pantsY = torsoY + th - 2;
+  const ph = 10;
+
+  body += `    <!-- Pants -->\n`;
   body += `    <path d="
-      M${cx - tw + 2} ${torsoY + 1}
-      L${cx + tw - 3} ${torsoY + th * 0.55}
-      L${cx + tw - 3} ${torsoY + th * 0.55 + sashW}
-      L${cx - tw + 2} ${torsoY + 1 + sashW}
+      M${cx - tw + 1} ${pantsY}
+      L${cx - tw} ${pantsY + ph}
+      Q ${cx - 2} ${pantsY + ph + 2}, ${cx} ${pantsY + ph - 1}
+      Q ${cx + 2} ${pantsY + ph + 2}, ${cx + tw} ${pantsY + ph}
+      L${cx + tw - 1} ${pantsY}
       Z"
-      fill="url(#sashGrad)" stroke="${OL}" stroke-width="1.5" />\n`;
+      fill="url(#pantsGrad)" stroke="${OL}" stroke-width="${OLW}" />\n`;
 
-  // Nếp gấp dải vàng
-  body += `    <line x1="${cx - 4}" y1="${torsoY + 6}" x2="${cx + 6}" y2="${torsoY + 12}" stroke="#E65100" stroke-width="1" opacity="0.5" />\n`;
-  body += `    <line x1="${cx - 8}" y1="${torsoY + 8}" x2="${cx + 2}" y2="${torsoY + 14}" stroke="#E65100" stroke-width="0.8" opacity="0.4" />\n`;
+  // Dây lưng
+  body += `    <line x1="${cx - tw + 2}" y1="${pantsY + 1}" x2="${cx + tw - 2}" y2="${pantsY + 1}" stroke="${pants.shadow}" stroke-width="1.5" stroke-linecap="round" />\n`;
 
-  // ── Phần dưới áo (vạt áo) ──
-  const bottomY = torsoY + th;
-  body += `    <path d="
-      M${cx - tw + 1} ${bottomY}
-      Q ${cx - tw - 1} ${bottomY + 5}, ${cx - tw + 3} ${bottomY + 8}
-      Q ${cx} ${bottomY + 10}, ${cx + tw - 3} ${bottomY + 8}
-      Q ${cx + tw + 1} ${bottomY + 5}, ${cx + tw - 1} ${bottomY}
-      Z"
-      fill="#2C2C2C" stroke="${OL}" stroke-width="${OLW}" />\n`;
-
-  return { defs, body, pantsBottom: bottomY + 8 };
+  return { defs, body, pantsBottom: pantsY + ph };
 }
 
 // ═══════════════════════════════════════════════════════════
-// CHIBI ARMS — Tay ngắn, ẩn sau áo (giống mẫu)
+// CHIBI ARMS — Tay ngắn, màu da
 // ═══════════════════════════════════════════════════════════
 
 function chibiArms(opts = {}) {
@@ -253,8 +272,7 @@ function chibiArms(opts = {}) {
   const OL = '#1A1A1A';
   const armW = 5;
   const armLen = 10;
-  // Tay cùng màu áo (đen)
-  const armColor = '#2C2C2C';
+  const armColor = PALETTE.hero.skin.base;
   const skin = PALETTE.hero.skin;
 
   let defs = '';
@@ -297,7 +315,7 @@ function chibiArms(opts = {}) {
 }
 
 // ═══════════════════════════════════════════════════════════
-// CHIBI LEGS — Chân ngắn cũn, tối (giống mẫu)
+// CHIBI LEGS — Chân ngắn, màu da
 // ═══════════════════════════════════════════════════════════
 
 function chibiLegs(opts = {}) {
@@ -308,7 +326,7 @@ function chibiLegs(opts = {}) {
   const OL = '#1A1A1A';
   const legLen = 8;
   const legW = 5;
-  const legColor = '#2C2C2C';
+  const legColor = PALETTE.hero.skin.base;
   const skin = PALETTE.hero.skin;
 
   let body = '';
