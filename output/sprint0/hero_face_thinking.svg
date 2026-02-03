@@ -40,9 +40,9 @@
       fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" opacity="0.5" />
     <ellipse cx="30.179999999999996" cy="6.699999999999999" rx="2.7456" ry="3.7439999999999998" fill="#4A4A4A" opacity="0.25" transform="rotate(-15 30.179999999999996 6.699999999999999)" />
     <!-- Eyes -->
-    <ellipse cx="24.88" cy="34.099999999999994" rx="5.1" ry="6" fill="#3E2723" />
+    <ellipse cx="24.88" cy="34.099999999999994" rx="6.375" ry="7.5" fill="#3E2723" />
     <ellipse cx="26.88" cy="31.599999999999994" rx="2" ry="2.2" fill="#FFFFFF" />
-    <ellipse cx="41.52" cy="34.099999999999994" rx="5.1" ry="6" fill="#3E2723" />
+    <ellipse cx="41.52" cy="34.099999999999994" rx="6.375" ry="7.5" fill="#3E2723" />
     <ellipse cx="43.52" cy="31.599999999999994" rx="2" ry="2.2" fill="#FFFFFF" />
     <!-- Mouth -->
     <path d="M29 43.88 Q 32 47.88, 35 43.88" fill="none" stroke="#2C1810" stroke-width="1.8" stroke-linecap="round" />

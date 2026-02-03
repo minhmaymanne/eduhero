@@ -136,7 +136,7 @@ function chibiHead(opts = {}) {
   const eyeL = cx - r * 0.32;
   const eyeR = cx + r * 0.32;
   const eyeY = cy + r * 0.05;
-  const eyeSize = 6;
+  const eyeSize = 7.5;
 
   if (expr === 'blink') {
     // Mắt nhắm (chớp mắt — đường cong nhẹ)
@@ -182,8 +182,8 @@ function chibiHead(opts = {}) {
   const mouthY = cy + r * 0.38;
 
   if (expr === 'happy' || expr === 'celebrate') {
-    // Cười há miệng
-    body += `    <path d="M${cx - 4} ${mouthY} Q ${cx} ${mouthY + 6}, ${cx + 4} ${mouthY}" fill="${PALETTE.hero.mouth}" stroke="${outline}" stroke-width="1.5" stroke-linecap="round" />\n`;
+    // Cười cute — đường cong đơn giản, không fill đỏ
+    body += `    <path d="M${cx - 5} ${mouthY} Q ${cx} ${mouthY + 6}, ${cx + 5} ${mouthY}" fill="none" stroke="${outline}" stroke-width="2" stroke-linecap="round" />\n`;
   } else if (expr === 'hurt') {
     // Méo miệng
     body += `    <path d="M${cx - 4} ${mouthY + 2} Q ${cx} ${mouthY - 2}, ${cx + 4} ${mouthY + 2}" fill="none" stroke="${outline}" stroke-width="2" stroke-linecap="round" />\n`;
@@ -191,7 +191,7 @@ function chibiHead(opts = {}) {
     // Mím miệng
     body += `    <line x1="${cx - 3}" y1="${mouthY}" x2="${cx + 3}" y2="${mouthY}" stroke="${outline}" stroke-width="2" stroke-linecap="round" />\n`;
   } else {
-    // Miệng nhỏ xinh (default)
+    // Miệng nhỏ cute (default)
     body += `    <path d="M${cx - 3} ${mouthY} Q ${cx} ${mouthY + 4}, ${cx + 3} ${mouthY}" fill="none" stroke="${outline}" stroke-width="1.8" stroke-linecap="round" />\n`;
   }
 
