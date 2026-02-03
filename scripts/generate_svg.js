@@ -104,8 +104,8 @@ function generateSprint0() {
 function generatePortrait(expression) {
   const head = chibiHead({
     cx: 32,
-    cy: 34,
-    radius: 26,
+    cy: 36,
+    radius: 27,
     expression,
     showBlush: true,
   });
