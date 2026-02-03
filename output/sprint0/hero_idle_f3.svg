@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" id="hero_f3">
+  <defs>
+    <filter id="blur"><feGaussianBlur stdDeviation="4" /></filter>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE4C4" />
+      <stop offset="50%" stop-color="#F5D0A9" />
+      <stop offset="100%" stop-color="#D4A574" />
+    </linearGradient>
+    <linearGradient id="pantsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#795548" />
+      <stop offset="50%" stop-color="#5D4037" />
+      <stop offset="100%" stop-color="#3E2723" />
+    </linearGradient>
+    <radialGradient id="headGrad" cx="45%" cy="35%" r="65%" fx="45%" fy="35%">
+      <stop offset="0%" stop-color="#FFE4C4" />
+      <stop offset="50%" stop-color="#F5D0A9" />
+      <stop offset="100%" stop-color="#D4A574" />
+    </radialGradient>
+    <radialGradient id="headGradHair" cx="50%" cy="30%" r="70%" fx="50%" fy="30%">
+      <stop offset="0%" stop-color="#4A4A4A" />
+      <stop offset="50%" stop-color="#2C2C2C" />
+      <stop offset="100%" stop-color="#1A1A1A" />
+    </radialGradient>
+
+  </defs>
+    <ellipse cx="64" cy="108" rx="18" ry="5" fill="#000000" opacity="0.12" />
+    <!-- Legs -->
+    <line x1="58" y1="79.75" x2="58" y2="93.75"
+        stroke="#2C1810" stroke-width="8.5" stroke-linecap="round" />
+    <line x1="58" y1="79.75" x2="58" y2="93.75"
+        stroke="#F5D0A9" stroke-width="6" stroke-linecap="round" />
+    <ellipse cx="58" cy="94.75" rx="4.199999999999999" ry="2.7" fill="#D4A574" stroke="#2C1810" stroke-width="1.8" />
+    <line x1="70" y1="79.75" x2="70" y2="93.75"
+        stroke="#2C1810" stroke-width="8.5" stroke-linecap="round" />
+    <line x1="70" y1="79.75" x2="70" y2="93.75"
+        stroke="#F5D0A9" stroke-width="6" stroke-linecap="round" />
+    <ellipse cx="70" cy="94.75" rx="4.199999999999999" ry="2.7" fill="#D4A574" stroke="#2C1810" stroke-width="1.8" />
+    <!-- Torso -->
+    <path d="M55 56.5
+      Q 53 64.5, 56 72.5
+      Q 64 76.5, 72 72.5
+      Q 75 64.5, 73 56.5 Z"
+      fill="url(#bodyGrad)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="60" cy="62.5" r="0.8" fill="#D4A574" opacity="0.4" />
+    <circle cx="68" cy="62.5" r="0.8" fill="#D4A574" opacity="0.4" />
+    <!-- Pants -->
+    <path d="M56 70.5
+      L55 80.5
+      Q 61 82.5, 64 79.5
+      Q 67 82.5, 73 80.5
+      L72 70.5 Z"
+      fill="url(#pantsGrad)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="57" y1="71.5" x2="71" y2="71.5" stroke="#3E2723" stroke-width="1.5" stroke-linecap="round" />
+    <!-- Arms -->
+    <line x1="46" y1="59.5" x2="41" y2="74" stroke="#2C1810" stroke-width="8.5" stroke-linecap="round" />
+    <line x1="46" y1="59.5" x2="41" y2="74" stroke="#F5D0A9" stroke-width="6" stroke-linecap="round" />
+    <circle cx="41" cy="74" r="3.3000000000000003" fill="#F5D0A9" stroke="#2C1810" stroke-width="2" />
+    <line x1="82" y1="59.5" x2="87" y2="77" stroke="#2C1810" stroke-width="8.5" stroke-linecap="round" />
+    <line x1="82" y1="59.5" x2="87" y2="77" stroke="#F5D0A9" stroke-width="6" stroke-linecap="round" />
+    <circle cx="87" cy="77" r="3.3000000000000003" fill="#F5D0A9" stroke="#2C1810" stroke-width="2" />
+    <!-- Head -->
+    <ellipse cx="64" cy="33.55" rx="26" ry="24.7" fill="url(#headGrad)" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Hair -->
+    <path d="M45.8 20.549999999999997
+      Q 56.2 -1.5500000000000043, 64 3.6499999999999986
+      Q 67.9 -2.8500000000000014, 66.6 -5.450000000000003
+      Q 73.1 -0.2500000000000071, 77 4.949999999999996
+      Q 82.2 15.349999999999998, 83.5 25.749999999999996
+      Q 77 14.049999999999997, 64 11.45
+      Q 51 15.349999999999998, 45.8 20.549999999999997 Z"
+      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M60.1 12.749999999999996
+      Q 65.3 -6.750000000000007, 67.9 -8.050000000000004
+      Q 69.2 -0.2500000000000071, 66.6 12.749999999999996"
+      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Eyes -->
+    <path d="M50.68 35.849999999999994 Q 55.68 29.849999999999994, 60.68 35.849999999999994" fill="none" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" />
+    <path d="M67.32 35.849999999999994 Q 72.32 29.849999999999994, 77.32 35.849999999999994" fill="none" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" />
+    <!-- Mouth -->
+    <path d="M60 43.43 Q 64 49.43, 68 43.43" fill="#E57373" stroke="#2C1810" stroke-width="1.5" stroke-linecap="round" />
+    <!-- Blush -->
+    <ellipse cx="52.3" cy="40.05" rx="5" ry="3.5" fill="#FFB6C1" opacity="0.45" />
+    <ellipse cx="75.7" cy="40.05" rx="5" ry="3.5" fill="#FFB6C1" opacity="0.45" />
+
+</svg>

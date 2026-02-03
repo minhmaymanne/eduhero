@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 70" width="280" height="70" id="btn_play">
+  <defs>
+    <linearGradient id="btnGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#81C784" />
+      <stop offset="50%" stop-color="#4CAF50" />
+      <stop offset="100%" stop-color="#2E7D32" />
+    </linearGradient>
+    <filter id="btnShadow"><feGaussianBlur stdDeviation="4" /></filter>
+
+  </defs>
+    <rect x="6" y="10" width="268" height="56" rx="28" fill="#000000" opacity="0.2" filter="url(#btnShadow)" />
+    <rect x="4" y="6" width="272" height="56" rx="28" fill="url(#btnGrad)" stroke="#2E7D32" stroke-width="3" />
+    <rect x="12" y="10" width="256" height="24" rx="12" fill="#FFFFFF" opacity="0.2" />
+    <text x="140" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF" stroke="#2E7D32" stroke-width="1">CHƠI LUÔN</text>
+    <polygon points="48,26 48,44 60,35" fill="#FFFFFF" opacity="0.9" />
+
+</svg>
