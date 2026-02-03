@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduHero — Sprint 1 Preview</title>
+  <style>
+    :root {
+      --bg: #1a1a2e;
+      --card: #16213e;
+      --card-hover: #1c2b4a;
+      --text: #e0e0e0;
+      --accent: #FF9800;
+      --accent2: #4CAF50;
+      --border: #0f3460;
+      --grid: repeating-conic-gradient(#ffffff08 0% 25%, transparent 0% 50%) 50% / 20px 20px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 0;
+    }
+    .header {
+      background: linear-gradient(135deg, #0f3460, #1a1a2e);
+      border-bottom: 3px solid var(--accent);
+      padding: 24px 32px;
+      text-align: center;
+    }
+    .header h1 { font-size: 28px; color: var(--accent); margin-bottom: 4px; }
+    .header p { color: #90A4AE; font-size: 14px; }
+    .header .badge {
+      display: inline-block;
+      background: var(--accent2);
+      color: #fff;
+      padding: 3px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .section { margin-bottom: 40px; }
+    .section h2 {
+      color: var(--accent);
+      font-size: 20px;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section h3 {
+      color: #90A4AE;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card:hover { background: var(--card-hover); }
+
+    /* Animation player */
+    .anim-player {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .anim-canvas {
+      width: 128px;
+      height: 128px;
+      background: var(--grid);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      image-rendering: pixelated;
+      flex-shrink: 0;
+    }
+    .anim-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .anim-controls button {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #1a1a2e;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .anim-controls button:hover { opacity: 0.85; }
+    .anim-info {
+      font-size: 12px;
+      color: #78909C;
+    }
+
+    /* Gallery grids */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .gallery-item {
+      background: var(--grid);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+    }
+    .gallery-item img {
+      display: block;
+      margin: 0 auto 4px;
+      image-rendering: pixelated;
+    }
+    .gallery-item .label {
+      font-size: 10px;
+      color: #78909C;
+    }
+
+    /* Sheet preview */
+    .sheet-preview {
+      overflow-x: auto;
+      background: var(--grid);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .sheet-preview img { height: 128px; image-rendering: pixelated; }
+    .sheet-label { font-size: 11px; color: #78909C; margin-top: 4px; }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .stat-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-align: center;
+    }
+    .stat-box .num { font-size: 28px; font-weight: bold; color: var(--accent); }
+    .stat-box .lbl { font-size: 11px; color: #78909C; margin-top: 2px; }
+
+    /* Anim row */
+    .anim-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .anim-cell {
+      flex: 0 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>EduHero — Asset Preview</h1>
+    <p>Sprint 1: Hero Core Animations</p>
+    <span class="badge">SPRINT 1 — P0 Priority</span>
+  </div>
+
+  <div class="container">
+    <!-- Stats -->
+    <div class="stats" id="stats"></div>
+
+    <!-- T1.1: Hero Idle -->
+    <div class="section">
+      <h2>T1.1 Hero Idle (4 frames)</h2>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-idle" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('idle')">Play / Pause</button>
+            <div class="anim-info" id="info-idle">Frame 0/4 | 6 FPS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.2: Hero Run 4 directions -->
+    <div class="section">
+      <h2>T1.2 Hero Run — 4 Directions (6 frames each)</h2>
+
+      <h3>Run Down (front)</h3>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-run_down" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('run_down')">Play / Pause</button>
+            <div class="anim-info" id="info-run_down">Frame 0/6 | 8 FPS</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Run Up (back)</h3>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-run_up" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('run_up')">Play / Pause</button>
+            <div class="anim-info" id="info-run_up">Frame 0/6 | 8 FPS</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Run Left (side)</h3>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-run_left" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('run_left')">Play / Pause</button>
+            <div class="anim-info" id="info-run_left">Frame 0/6 | 8 FPS</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Run Right (mirror)</h3>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-run_right" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('run_right')">Play / Pause</button>
+            <div class="anim-info" id="info-run_right">Frame 0/6 | 8 FPS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.3: Hero Attack Ranged -->
+    <div class="section">
+      <h2>T1.3 Hero Attack Ranged (4 frames)</h2>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-attack_ranged" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('attack_ranged')">Play / Pause</button>
+            <div class="anim-info" id="info-attack_ranged">Frame 0/4 | 6 FPS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.4: Hero Hit + Death -->
+    <div class="section">
+      <h2>T1.4 Hero Hit (2 frames) + Death (4 frames)</h2>
+
+      <h3>Hit Reaction</h3>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-hit" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('hit')">Play / Pause</button>
+            <div class="anim-info" id="info-hit">Frame 0/2 | 4 FPS</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>Death Sequence</h3>
+      <div class="card">
+        <div class="anim-player">
+          <img class="anim-canvas" id="anim-death" />
+          <div class="anim-controls">
+            <button onclick="toggleAnim('death')">Play / Pause</button>
+            <div class="anim-info" id="info-death">Frame 0/4 | 4 FPS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- T1.5: Portraits -->
+    <div class="section">
+      <h2>T1.5 Hero Portraits (5 expressions)</h2>
+      <div class="gallery" id="portraits"></div>
+    </div>
+
+    <!-- Sprite Sheets -->
+    <div class="section">
+      <h2>Sprite Sheets</h2>
+      <div id="sheets"></div>
+    </div>
+
+    <!-- All Frames Gallery -->
+    <div class="section">
+      <h2>All Frames Gallery</h2>
+      <div class="gallery" id="all-frames"></div>
+    </div>
+  </div>
+
+  <script>
+    const BASE = '../output/sprint1/';
+    const SVG = BASE;
+    const PNG = BASE + 'png/';
+    const SHEETS = BASE + 'sheets/';
+
+    // Animation definitions
+    const anims = {
+      idle: { prefix: 'hero_idle', frames: 4, fps: 6 },
+      run_down: { prefix: 'hero_run_down', frames: 6, fps: 8 },
+      run_up: { prefix: 'hero_run_up', frames: 6, fps: 8 },
+      run_left: { prefix: 'hero_run_left', frames: 6, fps: 8 },
+      run_right: { prefix: 'hero_run_right', frames: 6, fps: 8 },
+      attack_ranged: { prefix: 'hero_attack_ranged', frames: 4, fps: 6 },
+      hit: { prefix: 'hero_hit', frames: 2, fps: 4 },
+      death: { prefix: 'hero_death', frames: 4, fps: 4 },
+    };
+
+    // Preload SVGs
+    const cache = {};
+    for (const [key, cfg] of Object.entries(anims)) {
+      cache[key] = [];
+      for (let f = 0; f < cfg.frames; f++) {
+        const img = new Image();
+        img.src = `${SVG}${cfg.prefix}_f${f}.svg`;
+        cache[key].push(img);
+      }
+    }
+
+    // Animation state
+    const state = {};
+    for (const key of Object.keys(anims)) {
+      state[key] = { frame: 0, playing: true, interval: null };
+    }
+
+    function updateFrame(key) {
+      const cfg = anims[key];
+      const s = state[key];
+      const el = document.getElementById(`anim-${key}`);
+      const info = document.getElementById(`info-${key}`);
+      if (el && cache[key][s.frame]) {
+        el.src = cache[key][s.frame].src;
+      }
+      if (info) {
+        info.textContent = `Frame ${s.frame}/${cfg.frames} | ${cfg.fps} FPS`;
+      }
+    }
+
+    function startAnim(key) {
+      const cfg = anims[key];
+      const s = state[key];
+      if (s.interval) clearInterval(s.interval);
+      s.interval = setInterval(() => {
+        s.frame = (s.frame + 1) % cfg.frames;
+        updateFrame(key);
+      }, 1000 / cfg.fps);
+      s.playing = true;
+    }
+
+    function stopAnim(key) {
+      const s = state[key];
+      if (s.interval) clearInterval(s.interval);
+      s.interval = null;
+      s.playing = false;
+    }
+
+    function toggleAnim(key) {
+      if (state[key].playing) stopAnim(key);
+      else startAnim(key);
+    }
+
+    // Init all animations
+    for (const key of Object.keys(anims)) {
+      updateFrame(key);
+      startAnim(key);
+    }
+
+    // Portraits
+    const portraits = ['happy', 'serious', 'hurt', 'thinking', 'celebrate'];
+    const portraitEl = document.getElementById('portraits');
+    portraits.forEach(expr => {
+      portraitEl.innerHTML += `
+        <div class="gallery-item">
+          <img src="${SVG}hero_face_${expr}.svg" width="64" height="64" />
+          <div class="label">${expr}</div>
+        </div>`;
+    });
+
+    // Sprite sheets
+    const sheetNames = [
+      'hero_idle', 'hero_run_down', 'hero_run_up', 'hero_run_left',
+      'hero_run_right', 'hero_attack_ranged', 'hero_hit', 'hero_death'
+    ];
+    const sheetsEl = document.getElementById('sheets');
+    sheetNames.forEach(name => {
+      const frames = anims[name.replace('hero_', '')] ?
+        anims[name.replace('hero_', '')].frames : 4;
+      sheetsEl.innerHTML += `
+        <div class="sheet-preview">
+          <img src="${SHEETS}${name}_sheet.png"
+               onerror="this.parentElement.style.display='none'" />
+        </div>
+        <div class="sheet-label">${name}_sheet.png (${frames * 128}x128, ${frames} frames)</div>
+        <br/>`;
+    });
+
+    // All frames gallery
+    const allFrames = document.getElementById('all-frames');
+    for (const [key, cfg] of Object.entries(anims)) {
+      for (let f = 0; f < cfg.frames; f++) {
+        allFrames.innerHTML += `
+          <div class="gallery-item">
+            <img src="${SVG}${cfg.prefix}_f${f}.svg" width="64" height="64" />
+            <div class="label">${cfg.prefix}_f${f}</div>
+          </div>`;
+      }
+    }
+
+    // Stats
+    let totalSVG = 0;
+    for (const cfg of Object.values(anims)) totalSVG += cfg.frames;
+    totalSVG += 5; // portraits
+    const statsEl = document.getElementById('stats');
+    statsEl.innerHTML = `
+      <div class="stat-box"><div class="num">${totalSVG}</div><div class="lbl">SVG Files</div></div>
+      <div class="stat-box"><div class="num">${totalSVG}</div><div class="lbl">PNG Files</div></div>
+      <div class="stat-box"><div class="num">${sheetNames.length}</div><div class="lbl">Sprite Sheets</div></div>
+      <div class="stat-box"><div class="num">${Object.keys(anims).length}</div><div class="lbl">Animation Sets</div></div>
+    `;
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" id="hero_attack_ranged_f2">
+  <defs>
+    <filter id="blur"><feGaussianBlur stdDeviation="4" /></filter>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFE4C4" />
+      <stop offset="50%" stop-color="#F5D0A9" />
+      <stop offset="100%" stop-color="#D4A574" />
+    </linearGradient>
+    <linearGradient id="pantsGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#795548" />
+      <stop offset="50%" stop-color="#5D4037" />
+      <stop offset="100%" stop-color="#3E2723" />
+    </linearGradient>
+    <linearGradient id="xbowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EF5350" />
+      <stop offset="50%" stop-color="#C62828" />
+      <stop offset="100%" stop-color="#8E0000" />
+    </linearGradient>
+    <radialGradient id="headGrad" cx="48%" cy="42%" r="58%" fx="48%" fy="42%">
+      <stop offset="0%" stop-color="#FFE4C4" />
+      <stop offset="50%" stop-color="#F5D0A9" />
+      <stop offset="100%" stop-color="#D4A574" />
+    </radialGradient>
+    <radialGradient id="headGradHair" cx="45%" cy="30%" r="65%" fx="45%" fy="30%">
+      <stop offset="0%" stop-color="#4A4A4A" />
+      <stop offset="50%" stop-color="#2C2C2C" />
+      <stop offset="100%" stop-color="#1A1A1A" />
+    </radialGradient>
+
+  </defs>
+    <ellipse cx="64" cy="120" rx="16" ry="4" fill="#000000" opacity="0.12" />
+    <!-- Legs -->
+    <line x1="59" y1="98" x2="56" y2="106" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round" />
+    <line x1="59" y1="98" x2="56" y2="106" stroke="#F5D0A9" stroke-width="5" stroke-linecap="round" />
+    <ellipse cx="56" cy="107" rx="3" ry="1.75" fill="#D4A574" stroke="#1A1A1A" stroke-width="1.8" />
+    <line x1="69" y1="98" x2="72" y2="106" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round" />
+    <line x1="69" y1="98" x2="72" y2="106" stroke="#F5D0A9" stroke-width="5" stroke-linecap="round" />
+    <ellipse cx="72" cy="107" rx="3" ry="1.75" fill="#D4A574" stroke="#1A1A1A" stroke-width="1.8" />
+    <!-- Torso -->
+    <path d="
+      M49 74
+      Q 47 81, 50 88
+      Q 64 91, 78 88
+      Q 81 81, 79 74
+      Z"
+      fill="url(#bodyGrad)" stroke="#1A1A1A" stroke-width="3" />
+    <!-- Pants -->
+    <path d="
+      M50 86
+      L49 96
+      Q 62 98, 64 95
+      Q 66 98, 79 96
+      L78 86
+      Z"
+      fill="url(#pantsGrad)" stroke="#1A1A1A" stroke-width="3" />
+    <line x1="51" y1="87" x2="77" y2="87" stroke="#3E2723" stroke-width="1.5" stroke-linecap="round" />
+    <!-- Arms -->
+    <line x1="47" y1="77" x2="42" y2="80" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round" />
+    <line x1="47" y1="77" x2="42" y2="80" stroke="#F5D0A9" stroke-width="5" stroke-linecap="round" />
+    <circle cx="42" cy="80" r="2.25" fill="#F5D0A9" stroke="#1A1A1A" stroke-width="2" />
+    <line x1="81" y1="77" x2="90" y2="78" stroke="#1A1A1A" stroke-width="8" stroke-linecap="round" />
+    <line x1="81" y1="77" x2="90" y2="78" stroke="#F5D0A9" stroke-width="5" stroke-linecap="round" />
+    <circle cx="90" cy="78" r="2.25" fill="#F5D0A9" stroke="#1A1A1A" stroke-width="2" />
+    <!-- Crossbow aiming -->
+    <rect x="80" y="76" width="16" height="5" rx="2" fill="url(#xbowGrad)" stroke="#1A1A1A" stroke-width="2" />
+    <path d="M82 78 Q 78 70, 76 62" fill="none" stroke="url(#xbowGrad)" stroke-width="3" />
+    <path d="M82 78 Q 78 86, 76 94" fill="none" stroke="url(#xbowGrad)" stroke-width="3" />
+    <path d="M76 62 Q 84 78, 76 94" fill="none" stroke="#FFB300" stroke-width="1.5" opacity="0.8" />
+    <line x1="82" y1="78" x2="100" y2="78" stroke="#FFB300" stroke-width="2.5" stroke-linecap="round" />
+    <polygon points="100,78 95,74 95,82" fill="#FFB300" stroke="#1A1A1A" stroke-width="1" />
+    <!-- Ears -->
+    <ellipse cx="27.823999999999998" cy="44.56" rx="6.08" ry="8.36" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
+    <ellipse cx="27.823999999999998" cy="44.56" rx="2.736" ry="4.598" fill="#D4A574" opacity="0.25" />
+    <ellipse cx="100.176" cy="44.56" rx="6.08" ry="8.36" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
+    <ellipse cx="100.176" cy="44.56" rx="2.736" ry="4.598" fill="#D4A574" opacity="0.25" />
+    <!-- Head -->
+    <rect x="26" y="6.560000000000002" width="76" height="66.88" rx="26.599999999999998" ry="26.599999999999998" fill="url(#headGrad)" stroke="#1A1A1A" stroke-width="3.5" />
+    <!-- Hair: quả đào -->
+    <path d="M45 11.5
+      Q 56.4 5.799999999999997, 65.9 6.560000000000002
+      Q 75.4 7.700000000000003, 83 13.400000000000002
+      Q 75.4 9.599999999999998, 65.9 8.840000000000003
+      Q 56.4 8.080000000000002, 45 11.5 Z"
+      fill="url(#headGradHair)" opacity="0.4" />
+    <path d="
+      M65.9 15.071999999999997
+      Q 48.34400000000001 11.879999999999999,
+        53.132000000000005 0.7079999999999984
+      Q 57.92000000000001 -8.868000000000002,
+        66.69800000000001 -4.080000000000001
+      Q 75.476 -9.666,
+        80.26400000000001 1.505999999999999
+      Q 83.456 11.879999999999999,
+        70.688 19.061999999999998
+      Q 68.29400000000001 17.465999999999998,
+        65.9 15.071999999999997 Z"
+      fill="url(#headGradHair)" stroke="#1A1A1A" stroke-width="3.5" />
+    <path d="M66.69800000000001 -4.080000000000001
+      Q 66.69800000000001 1.505999999999999,
+        65.9 4.697999999999999"
+      fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" opacity="0.4" />
+    <ellipse cx="61.11200000000001" cy="2.3039999999999985" rx="3.192" ry="4.4688" fill="#4A4A4A" opacity="0.2" transform="rotate(-15 61.11200000000001 2.3039999999999985)" />
+    <!-- Eyes -->
+    <ellipse cx="51.46" cy="44.56" rx="6.460000000000001" ry="7.6000000000000005" fill="#1A1A1A" />
+    <ellipse cx="53.398" cy="42.128" rx="2.0672" ry="2.1280000000000006" fill="#FFFFFF" />
+    <ellipse cx="76.54" cy="44.56" rx="6.460000000000001" ry="7.6000000000000005" fill="#1A1A1A" />
+    <ellipse cx="78.47800000000001" cy="42.128" rx="2.0672" ry="2.1280000000000006" fill="#FFFFFF" />
+    <!-- Blush -->
+    <ellipse cx="45.760000000000005" cy="54.440000000000005" rx="4.56" ry="2.66" fill="#F48FB1" opacity="0.5" />
+    <ellipse cx="82.24" cy="54.440000000000005" rx="4.56" ry="2.66" fill="#F48FB1" opacity="0.5" />
+    <!-- Mouth -->
+    <line x1="59.44" y1="59" x2="68.56" y2="59" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" />
+
+</svg>

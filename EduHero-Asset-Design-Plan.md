@@ -11,12 +11,15 @@
 ## 📐 Quy chuẩn thiết kế chung (Design Guidelines)
 
 ### Phong cách đồ họa
-- **Art style:** Chibi 2D, đường viền (outline) đậm 2-3px, bo tròn mọi góc cạnh
+- **Art style:** Chibi 2D, đường viền (outline) đậm **3-3.5px** (#1A1A1A), bo tròn mọi góc cạnh
 - **Tô bóng:** Gradient mềm mại 2-3 tone (base + shadow + highlight), không flat
-- **Màu sắc:** Palette tươi sáng, bão hòa cao, tương phản rõ ràng
-- **Tỉ lệ chibi:** Đầu to : thân nhỏ = 2:1 đến 2.5:1 cho nhân vật
+- **Màu sắc:** Palette tươi sáng, bão hòa cao, tương phản rõ ràng (xem `src/constants/palette.js`)
+- **Tỉ lệ chibi:** Đầu to : thân nhỏ = **2.5:1** (đầu chiếm ~65% sprite), đầu hơi vuông (rounded rect)
+- **Mắt:** To, đơn giản, nâu đậm/đen với 1 highlight trắng nhỏ — **KHÔNG long lanh anime**, **KHÔNG nhìn thẳng người chơi** (kiểu Cookie Run)
+- **Miệng:** Đơn giản cute, cười há có răng trắng — **KHÔNG son đỏ**, **KHÔNG lưỡi**
+- **Blush:** Chấm hồng elip trên má (#F48FB1, opacity 0.5)
 - **Cảm giác:** Dễ thương, thân thiện trẻ em 7-15 tuổi, không đáng sợ
-- **Tham khảo:** Archero (gameplay sprites), Angry Birds (character design), Cookie Run (UI/UX)
+- **Tham khảo:** Archero (gameplay sprites), **Chibi monk/chú tiểu** (character style), Cookie Run (mắt đơn giản, UI/UX)
 
 ### Thông số kỹ thuật
 - **Render size chuẩn:** 128×128px (export 64×64px cho game, giữ 128px để scale)
@@ -32,13 +35,13 @@
 
 | Asset | Mô tả chi tiết | Size | Ghi chú |
 |---|---|---|---|
-| **Concept chính** | Bé trai Việt Nam chibi: đầu to tròn, mắt to long lanh (kiểu anime đơn giản), miệng nhỏ xinh. Chỏm tóc đen phía trước kiểu chú tiểu. Da tone vàng ấm #F5D0A9. Mặc quần đùi nâu/xanh lá, ở trần. Chân đi chân đất. Tay chân ngắn tròn cute | 128×128px | Nhân vật trung tâm, cần hoàn thiện nhất |
+| **Concept chính** | Bé trai Việt Nam chibi kiểu **chibi monk**: đầu to **hơi vuông** (rounded rect, không tròn hoàn toàn), tỉ lệ đầu:thân ≈ 2.5:1. **Tóc đen kiểu "quả đào"** (tuft hình trái tim lệch trên đỉnh đầu, giống chú tiểu). **Mắt to đen/nâu đậm đơn giản** (1 highlight trắng nhỏ, KHÔNG long lanh anime, KHÔNG nhìn thẳng người chơi — kiểu Cookie Run). **Miệng há cười** có răng trắng, khoang miệng đỏ sẫm, KHÔNG có lưỡi, KHÔNG son đỏ. **Chấm hồng trên má** (blush). Tai tròn nhỏ 2 bên. Da tone vàng ấm #FFCC80. Đường viền đen đậm 3-3.5px (#1A1A1A) toàn bộ. Ở trần, mặc quần đùi nâu #795548. Chân đi chân đất. Tay chân ngắn tròn cute | 128×128px | Nhân vật trung tâm — ✅ **Đã hoàn thiện Sprint 0** |
 
 ### 1.2 Hero Sprite Sheets
 
 | Sprite Sheet | Frames | Hướng | Mô tả animation | Ưu tiên |
 |---|---|---|---|---|
-| `hero_idle` | 4 frames | 1 hướng (front) | Đứng yên, thở nhẹ (thân lên xuống ~2px), chỏm tóc lay nhẹ, mắt chớp 1 lần ở frame 3 | ⭐ P0 |
+| `hero_idle` | 4 frames | 1 hướng (front) | Đứng yên, thở nhẹ (thân lên xuống ~2px), chỏm tóc lay nhẹ, mắt chớp 1 lần ở frame 3 | ✅ Done |
 | `hero_run_down` | 6 frames | Xuống (mặt trước) | Chạy về phía camera, chân luân phiên, tay đung đưa, tóc bay ngược | ⭐ P0 |
 | `hero_run_up` | 6 frames | Lên (mặt sau) | Chạy đi ra xa camera, thấy lưng, quần đùi, gáy tóc | ⭐ P0 |
 | `hero_run_left` | 6 frames | Trái | Chạy sang trái, thấy profile, tóc bay phải | ⭐ P0 |
@@ -51,15 +54,15 @@
 | `hero_quiz` | 2 frames | Front | Ngồi xếp bằng, tay cầm sách mở, biểu cảm tập trung nghiêm túc dễ thương | P1 |
 | `hero_victory` | 4 frames | Front | Nhảy lên cao, hai tay giơ lên vui sướng, mắt cười híp, hiệu ứng sparkle | P1 |
 
-### 1.3 Hero Biểu cảm (dùng cho UI portraits)
+### 1.3 Hero Biểu cảm (dùng cho UI portraits) — ✅ Đã hoàn thành Sprint 0
 
-| Asset | Mô tả | Size | Dùng ở |
-|---|---|---|---|
-| `hero_face_happy` | Mặt cười tươi, mắt cong vui, miệng há | 64×64px | Menu, Victory |
-| `hero_face_serious` | Mắt nhìn thẳng nghiêm túc, miệng mím | 64×64px | Combat HUD |
-| `hero_face_hurt` | Mắt nhắm, mồ hôi, miệng méo | 64×64px | HP thấp |
-| `hero_face_thinking` | Mắt nhìn lên, tay gãi cằm | 64×64px | Quiz mode |
-| `hero_face_celebrate` | Mắt sao, miệng cười to, sparkle | 64×64px | Quiz đúng, Level up |
+| Asset | Mô tả | Size | Dùng ở | Status |
+|---|---|---|---|---|
+| `hero_face_happy` | Miệng há cười to (răng trắng, khoang đỏ sẫm, không lưỡi), mắt nâu to, blush hồng | 64×64px | Menu, Victory | ✅ |
+| `hero_face_serious` | Mắt nhìn thẳng nghiêm túc, miệng mím (line ngang) | 64×64px | Combat HUD | ✅ |
+| `hero_face_hurt` | Mắt nhắm (đường cong xuống), miệng méo (curve ngược) | 64×64px | HP thấp | ✅ |
+| `hero_face_thinking` | Mắt nhìn lên (highlight dời lên), miệng nhỏ cười nhẹ | 64×64px | Quiz mode | ✅ |
+| `hero_face_celebrate` | Miệng há cười to (giống happy), mắt nâu to sáng, blush hồng | 64×64px | Quiz đúng, Level up | ✅ |
 
 ---
 
@@ -569,17 +572,22 @@ Không thiết kế đồ họa, nhưng liệt kê để đồng bộ kế hoạ
 
 ## 15. 🗓️ KẾ HOẠCH THIẾT KẾ — Sprint Plan cho Claude Code
 
-### Sprint 0: Setup & Prototype (1-2 ngày)
+### Sprint 0: Setup & Prototype — ✅ HOÀN THÀNH
 
 **Mục tiêu:** Thiết lập pipeline sinh asset SVG → PNG, test style guide
 
-| Task | Mô tả | Output |
-|---|---|---|
-| T0.1 | Tạo script Node.js sinh SVG chibi character bằng code | `scripts/generate_svg.js` |
-| T0.2 | Tạo color palette constants file (toàn bộ hex codes) | `src/constants/palette.js` |
-| T0.3 | Prototype 1 hero idle frame để xác nhận art style | `hero_idle_test.svg` → `.png` |
-| T0.4 | Setup sharp/canvas cho batch convert SVG → PNG sprite sheet | `scripts/build_sprites.js` |
-| T0.5 | Tạo template functions cho chibi head, body, limbs (reusable) | `src/templates/chibi_parts.js` |
+| Task | Mô tả | Output | Status |
+|---|---|---|---|
+| T0.1 | Tạo script Node.js sinh SVG chibi character bằng code | `scripts/generate_svg.js` | ✅ |
+| T0.2 | Tạo color palette constants file (toàn bộ hex codes) | `src/constants/palette.js` | ✅ |
+| T0.3 | Prototype hero idle 4 frames + 5 biểu cảm để xác nhận art style | `output/sprint0/hero_idle_f*.svg`, `hero_face_*.svg` | ✅ |
+| T0.4 | Setup Sharp cho batch convert SVG → PNG + sprite sheet | `scripts/build_sprites.js` | ✅ |
+| T0.5 | Tạo template functions cho chibi head, body, limbs (reusable) | `src/templates/chibi_parts.js` | ✅ |
+| T0.6 | Tạo HTML preview page để review assets trực quan | `preview/sprint0.html` | ✅ |
+
+**Output Sprint 0:** 14 SVGs, 14 PNGs (128px + 64px), 1 sprite sheet (hero_idle_sheet.png 512×128), manifest.json
+**Pipeline:** `npm run generate` → SVG → `npm run build` → PNG + sprite sheets
+**Ghi chú:** Hero art style đã qua ~8 vòng chỉnh sửa, finalized với phong cách chibi monk (đầu hơi vuông, tóc quả đào, mắt Cookie Run, miệng há răng trắng không lưỡi, blush hồng trên má)
 
 ### Sprint 1: Hero Core (2-3 ngày) ⭐ P0
 
@@ -716,14 +724,56 @@ Hãy viết code JavaScript/Node.js sử dụng [canvas/svg/sharp]
 
 ### Lưu ý kỹ thuật cho Claude Code:
 
-1. **Ưu tiên SVG** cho icon, UI elements — scale tốt, dễ chỉnh
-2. **Dùng Canvas API** cho sprite animation frames — kiểm soát pixel tốt
-3. **Sharp library** cho batch processing, resize, sprite sheet packing
-4. **Mỗi asset là 1 function** — dễ iterate, chỉnh sửa từng phần
-5. **Export 2 size**: 128px (source), 64px (game) cho sprites
-6. **Consistent style**: tạo shared drawing functions cho head, body, eyes, etc.
-7. **Test từng asset** trước khi batch — preview HTML page
+1. **SVG là format chính** cho tất cả assets — sinh bằng JavaScript string templates
+2. **Sharp library (^0.33.5)** cho SVG → PNG conversion, resize, sprite sheet packing (canvas không cần)
+3. **Mỗi asset là 1 function** — dễ iterate, chỉnh sửa từng phần (xem `chibi_parts.js`)
+4. **Export 2 size**: 128px (source), 64px (game) cho sprites
+5. **Consistent style**: shared drawing functions cho head, body, eyes, etc. trong `src/templates/`
+6. **Test từng asset** trước khi batch — preview HTML page (`preview/sprint0.html`)
+7. **Sprint-based generation**: `scripts/generate_svg.js --sprint N` → `scripts/build_sprites.js --sprint N`
+8. **TexturePacker JSON Array** format cho sprite sheet metadata
 
 ---
 
 *Tài liệu này là blueprint đầy đủ cho toàn bộ asset đồ họa của EduHero. Mỗi sprint có thể giao cho Claude Code session riêng, chạy song song nếu cần.*
+
+---
+
+## 17. 📝 CHANGELOG — Tiến độ thực hiện
+
+### Sprint 0 — ✅ Hoàn thành (03/02/2026)
+
+**Files đã tạo:**
+- `src/constants/palette.js` — Bảng màu master cho toàn bộ game
+- `src/templates/chibi_parts.js` — Template library: `chibiHead()`, `chibiBody()`, `chibiArms()`, `chibiLegs()`, `assembleHero()`
+- `scripts/generate_svg.js` — Script sinh SVG theo sprint
+- `scripts/build_sprites.js` — Pipeline SVG → PNG + sprite sheets (Sharp)
+- `preview/sprint0.html` — Trang preview với animation player, gallery, palette swatches
+
+**Assets đã sinh:**
+- 4 hero idle frames (hero_idle_f0~f3.svg/png)
+- 5 hero expression portraits (hero_face_happy/serious/hurt/thinking/celebrate)
+- 1 weapon icon test (weapon_icon_ranged_a_test)
+- 2 drop item tests (item_gold_test, item_hp_small_test)
+- 1 UI button test (ui_btn_play_test)
+- 1 tile test (tile_sg_road_test)
+- 1 sprite sheet (hero_idle_sheet.png 512×128)
+
+**Các thay đổi thiết kế hero (qua ~8 vòng iteration):**
+
+| # | Thay đổi | Lý do |
+|---|---|---|
+| 1 | Tóc → kiểu "quả đào" (tuft trái tim lệch) | Giống chú tiểu trong chùa, không phải chẻ 2 mái |
+| 2 | Mắt → nâu đậm đơn giản, 1 highlight | Long lanh anime quá sợ, Cookie Run style tốt hơn |
+| 3 | Bỏ son đỏ miệng | Miệng không cần lipstick, cười đơn giản cute |
+| 4 | Mắt xa hơn, to hơn, miệng dời xuống | Mặt trông ngắn, miệng dính mắt |
+| 5 | Redesign toàn bộ theo mẫu chibi monk | User cung cấp reference image, match 100% style |
+| 6 | Quay lại tóc quả đào + ở trần | Giữ face style mới nhưng tóc và body theo concept gốc |
+| 7 | Đầu hơi vuông (rounded rect) | Giống mẫu reference, không tròn hoàn toàn |
+| 8 | Giữ blush hồng trên má, bỏ lưỡi | Blush ở má (không phải cằm), miệng không thè lưỡi |
+
+**Quyết định kỹ thuật:**
+- Dùng **Sharp** thay vì Canvas (dễ cài đặt hơn, đủ tốt cho SVG→PNG)
+- SVG sinh bằng **JavaScript string templates** (không dùng thư viện SVG)
+- Outline stroke: **3-3.5px #1A1A1A** everywhere
+- Head dùng `<rect>` với `rx/ry` thay vì `<ellipse>` để tạo hình hơi vuông

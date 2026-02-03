@@ -77,18 +77,30 @@ async function main() {
     }
   }
 
-  // ── Generate sprite sheet for hero idle ──
-  const heroIdleFiles = svgFiles
-    .filter(f => f.startsWith('hero_idle_f'))
-    .sort();
+  // ── Generate sprite sheets for all animation sets ──
+  const sheetConfigs = [
+    { prefix: 'hero_idle_f', name: 'hero_idle', w: 128, h: 128 },
+    { prefix: 'hero_run_down_f', name: 'hero_run_down', w: 128, h: 128 },
+    { prefix: 'hero_run_up_f', name: 'hero_run_up', w: 128, h: 128 },
+    { prefix: 'hero_run_left_f', name: 'hero_run_left', w: 128, h: 128 },
+    { prefix: 'hero_run_right_f', name: 'hero_run_right', w: 128, h: 128 },
+    { prefix: 'hero_attack_ranged_f', name: 'hero_attack_ranged', w: 128, h: 128 },
+    { prefix: 'hero_hit_f', name: 'hero_hit', w: 128, h: 128 },
+    { prefix: 'hero_death_f', name: 'hero_death', w: 128, h: 128 },
+  ];
 
-  if (heroIdleFiles.length > 0) {
-    await generateSpriteSheet(
-      heroIdleFiles.map(f => f.replace('.svg', '')),
-      'hero_idle',
-      128,
-      128
-    );
+  const generatedSheets = [];
+  for (const cfg of sheetConfigs) {
+    const frameFiles = svgFiles.filter(f => f.startsWith(cfg.prefix)).sort();
+    if (frameFiles.length > 0) {
+      await generateSpriteSheet(
+        frameFiles.map(f => f.replace('.svg', '')),
+        cfg.name,
+        cfg.w,
+        cfg.h
+      );
+      generatedSheets.push(`${cfg.name}_sheet.png`);
+    }
   }
 
   // ── Generate metadata JSON ──
@@ -107,7 +119,7 @@ async function main() {
         height: viewBoxMatch ? parseInt(viewBoxMatch[2]) : 128,
       };
     }),
-    spriteSheets: heroIdleFiles.length > 0 ? ['hero_idle_sheet.png'] : [],
+    spriteSheets: generatedSheets,
   };
 
   const metaPath = path.join(INPUT_DIR, 'manifest.json');

@@ -10,6 +10,12 @@ const fs = require('fs');
 const path = require('path');
 const {
   assembleHero,
+  assembleHeroRunDown,
+  assembleHeroRunUp,
+  assembleHeroRunSide,
+  assembleHeroAttackRanged,
+  assembleHeroHit,
+  assembleHeroDeath,
   svgWrap,
   radialGradient,
   linearGradient,
@@ -283,12 +289,82 @@ function generateSaigonRoadTile() {
 }
 
 // ═══════════════════════════════════════════════════════════
+// SPRINT 1 — Hero Core Animations
+// ═══════════════════════════════════════════════════════════
+
+function generateSprint1() {
+  console.log('\n🎨 Sprint 1: Hero Core Animations\n');
+
+  // ─── T1.1: Hero Idle (4 frames) — carried from Sprint 0, re-generate for consistency ───
+  console.log('📦 Hero Idle (4 frames):');
+  for (let f = 0; f < 4; f++) {
+    const breathOffset = Math.sin((f / 4) * Math.PI * 2) * 1.5;
+    const expression = f === 2 ? 'blink' : 'happy';
+    const svg = assembleHero({
+      expression, armPose: 'idle', legPose: 'idle', frame: f,
+      bodyOffsetY: breathOffset, pantsColor: 'brown',
+    });
+    writeSVG(`hero_idle_f${f}.svg`, svg);
+  }
+
+  // ─── T1.2: Hero Run 4 hướng (6 frames × 4) ───
+  console.log('\n📦 Hero Run Down (6 frames):');
+  for (let f = 0; f < 6; f++) {
+    writeSVG(`hero_run_down_f${f}.svg`, assembleHeroRunDown({ frame: f }));
+  }
+
+  console.log('\n📦 Hero Run Up (6 frames):');
+  for (let f = 0; f < 6; f++) {
+    writeSVG(`hero_run_up_f${f}.svg`, assembleHeroRunUp({ frame: f }));
+  }
+
+  console.log('\n📦 Hero Run Left (6 frames):');
+  for (let f = 0; f < 6; f++) {
+    writeSVG(`hero_run_left_f${f}.svg`, assembleHeroRunSide({ frame: f, flip: false }));
+  }
+
+  console.log('\n📦 Hero Run Right (6 frames — mirror of left):');
+  for (let f = 0; f < 6; f++) {
+    writeSVG(`hero_run_right_f${f}.svg`, assembleHeroRunSide({ frame: f, flip: true }));
+  }
+
+  // ─── T1.3: Hero Attack Ranged (4 frames) ───
+  console.log('\n📦 Hero Attack Ranged (4 frames):');
+  for (let f = 0; f < 4; f++) {
+    writeSVG(`hero_attack_ranged_f${f}.svg`, assembleHeroAttackRanged({ frame: f }));
+  }
+
+  // ─── T1.4: Hero Hit (2 frames) + Death (4 frames) ───
+  console.log('\n📦 Hero Hit (2 frames):');
+  for (let f = 0; f < 2; f++) {
+    writeSVG(`hero_hit_f${f}.svg`, assembleHeroHit({ frame: f }));
+  }
+
+  console.log('\n📦 Hero Death (4 frames):');
+  for (let f = 0; f < 4; f++) {
+    writeSVG(`hero_death_f${f}.svg`, assembleHeroDeath({ frame: f }));
+  }
+
+  // ─── T1.5: Hero Portraits (5 biểu cảm) — carried from Sprint 0 ───
+  console.log('\n📦 Hero Expressions (5 portraits):');
+  const expressions = ['happy', 'serious', 'hurt', 'thinking', 'celebrate'];
+  for (const expr of expressions) {
+    writeSVG(`hero_face_${expr}.svg`, generatePortrait(expr));
+  }
+
+  const totalFiles = fs.readdirSync(OUTPUT_DIR).filter(f => f.endsWith('.svg')).length;
+  console.log(`\n✅ Sprint 1 done! ${totalFiles} SVG files → ${OUTPUT_DIR}\n`);
+}
+
+// ═══════════════════════════════════════════════════════════
 // MAIN
 // ═══════════════════════════════════════════════════════════
 
 if (sprint === 0) {
   generateSprint0();
+} else if (sprint === 1) {
+  generateSprint1();
 } else {
-  console.log(`⚠️  Sprint ${sprint} chưa được implement. Hiện chỉ có Sprint 0.`);
+  console.log(`⚠️  Sprint ${sprint} chưa được implement. Hiện chỉ có Sprint 0-1.`);
   process.exit(1);
 }

@@ -261,7 +261,10 @@
       <div class="anim-container">
         <h3>Idle Animation (live preview)</h3>
         <div class="anim-stage" id="animStage">
-          <object data="../output/sprint0/hero_idle_f0.svg" type="image/svg+xml" id="animFrame" width="128" height="128"></object>
+          <img src="../output/sprint0/hero_idle_f0.svg" class="anim-frame" width="128" height="128" style="display:block;">
+          <img src="../output/sprint0/hero_idle_f1.svg" class="anim-frame" width="128" height="128" style="display:none;">
+          <img src="../output/sprint0/hero_idle_f2.svg" class="anim-frame" width="128" height="128" style="display:none;">
+          <img src="../output/sprint0/hero_idle_f3.svg" class="anim-frame" width="128" height="128" style="display:none;">
         </div>
         <div class="anim-controls">
           <button onclick="toggleAnim()" id="btnPlayPause" class="active">&#9654; Play</button>
@@ -443,20 +446,18 @@
 
   <script>
     // ═══ Animation Player ═══
-    const FRAMES = [
-      '../output/sprint0/hero_idle_f0.svg',
-      '../output/sprint0/hero_idle_f1.svg',
-      '../output/sprint0/hero_idle_f2.svg',
-      '../output/sprint0/hero_idle_f3.svg'
-    ];
+    // All frames preloaded as <img> in DOM — toggle display to avoid flicker
+    const frameEls = document.querySelectorAll('#animStage .anim-frame');
+    const TOTAL_FRAMES = frameEls.length;
     let currentFrame = 0;
     let fps = 4;
     let playing = false;
     let animInterval = null;
 
     function showFrame(idx) {
-      currentFrame = ((idx % FRAMES.length) + FRAMES.length) % FRAMES.length;
-      document.getElementById('animFrame').data = FRAMES[currentFrame];
+      frameEls[currentFrame].style.display = 'none';
+      currentFrame = ((idx % TOTAL_FRAMES) + TOTAL_FRAMES) % TOTAL_FRAMES;
+      frameEls[currentFrame].style.display = 'block';
       document.getElementById('frameNum').textContent = currentFrame;
     }
 
