@@ -1,2 +1,0 @@
-# eduhero
-Hero Education
