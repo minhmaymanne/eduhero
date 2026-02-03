@@ -159,23 +159,22 @@ function chibiHead(opts = {}) {
     starEye(eyeL, eyeY);
     starEye(eyeR, eyeY);
   } else {
-    // ── MẮT MỞ TO LONG LANH (default cho happy, serious, thinking, v.v.) ──
-    const drawBigEye = (ex, ey, lookUpRight) => {
-      // Tròng mắt trắng lớn
-      body += `    <ellipse cx="${ex}" cy="${ey}" rx="${eyeSize * 0.9}" ry="${eyeSize}" fill="#FFFFFF" stroke="${outline}" stroke-width="1.5" />\n`;
-      // Đồng tử đen to tròn
-      const pupilOffX = lookUpRight ? 1.5 : 0;
-      const pupilOffY = lookUpRight ? -1.5 : 0;
-      body += `    <ellipse cx="${ex + pupilOffX}" cy="${ey + pupilOffY}" rx="${eyeSize * 0.55}" ry="${eyeSize * 0.65}" fill="${PALETTE.hero.eyes.base}" />\n`;
-      // Highlight lớn (phản chiếu ánh sáng chính)
-      body += `    <ellipse cx="${ex + pupilOffX + 2}" cy="${ey + pupilOffY - 2}" rx="2.2" ry="2.5" fill="${PALETTE.hero.eyeShine}" />\n`;
-      // Highlight nhỏ (phản chiếu phụ)
-      body += `    <ellipse cx="${ex + pupilOffX - 1.5}" cy="${ey + pupilOffY + 1.5}" rx="1.2" ry="1.2" fill="${PALETTE.hero.eyeShine}" opacity="0.6" />\n`;
+    // ── MẮT TO ĐƠN GIẢN CUTE (kiểu Cookie Run / Angry Birds) ──
+    // Mắt oval nâu đậm (không đen thui), đồng tử nhìn hơi xuống-trái
+    // (tránh cảm giác nhìn thẳng vào người chơi), 1 highlight nhỏ gọn
+    const drawCuteEye = (ex, ey, lookUpRight) => {
+      const browColor = '#3E2723';  // nâu đậm ấm, không phải đen
+      // Tròng mắt nâu đậm to tròn (không có viền trắng bao quanh)
+      const pupilOffX = lookUpRight ? 1.2 : -0.5;  // hơi nhìn sang trái (tự nhiên)
+      const pupilOffY = lookUpRight ? -1.2 : 0.5;   // hơi nhìn xuống (thân thiện)
+      body += `    <ellipse cx="${ex + pupilOffX}" cy="${ey + pupilOffY}" rx="${eyeSize * 0.85}" ry="${eyeSize}" fill="${browColor}" />\n`;
+      // 1 highlight tròn nhỏ gọn (phản chiếu đơn giản)
+      body += `    <ellipse cx="${ex + pupilOffX + 2}" cy="${ey + pupilOffY - 2.5}" rx="2" ry="2.2" fill="${PALETTE.hero.eyeShine}" />\n`;
     };
 
     const lookUp = (expr === 'thinking');
-    drawBigEye(eyeL, eyeY, lookUp);
-    drawBigEye(eyeR, eyeY, lookUp);
+    drawCuteEye(eyeL, eyeY, lookUp);
+    drawCuteEye(eyeR, eyeY, lookUp);
   }
 
   // ── Miệng ──

@@ -40,14 +40,10 @@
       fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" opacity="0.5" />
     <ellipse cx="30.179999999999996" cy="6.699999999999999" rx="2.7456" ry="3.7439999999999998" fill="#4A4A4A" opacity="0.25" transform="rotate(-15 30.179999999999996 6.699999999999999)" />
     <!-- Eyes -->
-    <ellipse cx="23.68" cy="35.3" rx="5.4" ry="6" fill="#FFFFFF" stroke="#2C1810" stroke-width="1.5" />
-    <ellipse cx="25.18" cy="33.8" rx="3.3000000000000003" ry="3.9000000000000004" fill="#1A1A1A" />
-    <ellipse cx="27.18" cy="31.799999999999997" rx="2.2" ry="2.5" fill="#FFFFFF" />
-    <ellipse cx="23.68" cy="35.3" rx="1.2" ry="1.2" fill="#FFFFFF" opacity="0.6" />
-    <ellipse cx="40.32" cy="35.3" rx="5.4" ry="6" fill="#FFFFFF" stroke="#2C1810" stroke-width="1.5" />
-    <ellipse cx="41.82" cy="33.8" rx="3.3000000000000003" ry="3.9000000000000004" fill="#1A1A1A" />
-    <ellipse cx="43.82" cy="31.799999999999997" rx="2.2" ry="2.5" fill="#FFFFFF" />
-    <ellipse cx="40.32" cy="35.3" rx="1.2" ry="1.2" fill="#FFFFFF" opacity="0.6" />
+    <ellipse cx="24.88" cy="34.099999999999994" rx="5.1" ry="6" fill="#3E2723" />
+    <ellipse cx="26.88" cy="31.599999999999994" rx="2" ry="2.2" fill="#FFFFFF" />
+    <ellipse cx="41.52" cy="34.099999999999994" rx="5.1" ry="6" fill="#3E2723" />
+    <ellipse cx="43.52" cy="31.599999999999994" rx="2" ry="2.2" fill="#FFFFFF" />
     <!-- Mouth -->
     <path d="M29 43.88 Q 32 47.88, 35 43.88" fill="none" stroke="#2C1810" stroke-width="1.8" stroke-linecap="round" />
     <!-- Blush -->
