@@ -49,6 +49,9 @@
     <ellipse cx="24.467" cy="37.512" rx="1.4688000000000003" ry="1.5120000000000002" fill="#FFFFFF" />
     <ellipse cx="40.91" cy="39.24" rx="4.590000000000001" ry="5.4" fill="#1A1A1A" />
     <ellipse cx="42.287" cy="37.512" rx="1.4688000000000003" ry="1.5120000000000002" fill="#FFFFFF" />
+    <!-- Blush -->
+    <ellipse cx="19.04" cy="46.26" rx="3.2399999999999998" ry="1.8900000000000001" fill="#F48FB1" opacity="0.5" />
+    <ellipse cx="44.96" cy="46.26" rx="3.2399999999999998" ry="1.8900000000000001" fill="#F48FB1" opacity="0.5" />
     <!-- Mouth -->
     <line x1="28.76" y1="49.5" x2="35.24" y2="49.5" stroke="#1A1A1A" stroke-width="2.5" stroke-linecap="round" />
 

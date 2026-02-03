@@ -163,7 +163,13 @@ function chibiHead(opts = {}) {
     drawEye(eyeR, eyeY, expr === 'thinking');
   }
 
-  // (không có chấm hồng má)
+  // ── Má hồng (ngay má, 2 bên mắt) ──
+  if (showBlush) {
+    body += `    <!-- Blush -->\n`;
+    const blushY = eyeY + eyeRY + r * 0.06;
+    body += `    <ellipse cx="${cx - r * 0.48}" cy="${blushY}" rx="${r * 0.12}" ry="${r * 0.07}" fill="#F48FB1" opacity="0.5" />\n`;
+    body += `    <ellipse cx="${cx + r * 0.48}" cy="${blushY}" rx="${r * 0.12}" ry="${r * 0.07}" fill="#F48FB1" opacity="0.5" />\n`;
+  }
 
   // ── Miệng — cười hở, bên trong có răng trắng + lưỡi hồng (giống mẫu 100%) ──
   body += `    <!-- Mouth -->\n`;
@@ -179,8 +185,6 @@ function chibiHead(opts = {}) {
     body += `    <path d="M${cx - mw + 2} ${mouthY + 1} Q ${cx} ${mouthY + mh * 2}, ${cx + mw - 2} ${mouthY + 1} Z" fill="#B71C1C" />\n`;
     // Răng trắng trên (hình bán nguyệt nhỏ sát mép trên)
     body += `    <path d="M${cx - mw + 3} ${mouthY + 1} Q ${cx} ${mouthY + mh * 0.7}, ${cx + mw - 3} ${mouthY + 1} Z" fill="#FFFFFF" />\n`;
-    // Lưỡi hồng tròn ở dưới
-    body += `    <ellipse cx="${cx}" cy="${mouthY + mh * 1.4}" rx="${mw * 0.5}" ry="${mh * 0.45}" fill="#E57373" />\n`;
   } else if (expr === 'hurt') {
     // Miệng méo
     const mw = r * 0.14;
