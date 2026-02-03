@@ -16,7 +16,7 @@
       <stop offset="50%" stop-color="#F5D0A9" />
       <stop offset="100%" stop-color="#D4A574" />
     </radialGradient>
-    <radialGradient id="headGradHair" cx="50%" cy="30%" r="70%" fx="50%" fy="30%">
+    <radialGradient id="headGradHair" cx="45%" cy="30%" r="65%" fx="45%" fy="30%">
       <stop offset="0%" stop-color="#4A4A4A" />
       <stop offset="50%" stop-color="#2C2C2C" />
       <stop offset="100%" stop-color="#1A1A1A" />
@@ -60,22 +60,40 @@
     <circle cx="87" cy="77" r="3.3000000000000003" fill="#F5D0A9" stroke="#2C1810" stroke-width="2" />
     <!-- Head -->
     <ellipse cx="64" cy="33.55" rx="26" ry="24.7" fill="url(#headGrad)" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-    <!-- Hair -->
-    <path d="M45.8 20.549999999999997
-      Q 56.2 -1.5500000000000043, 64 3.6499999999999986
-      Q 67.9 -2.8500000000000014, 66.6 -5.450000000000003
-      Q 73.1 -0.2500000000000071, 77 4.949999999999996
-      Q 82.2 15.349999999999998, 83.5 25.749999999999996
-      Q 77 14.049999999999997, 64 11.45
-      Q 51 15.349999999999998, 45.8 20.549999999999997 Z"
-      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M60.1 12.749999999999996
-      Q 65.3 -6.750000000000007, 67.9 -8.050000000000004
-      Q 69.2 -0.2500000000000071, 66.6 12.749999999999996"
-      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Hair: quả đào chú tiểu -->
+    <path d="M52.3 13.269999999999996
+      Q 58.8 9.629999999999995, 65.3 10.149999999999995
+      Q 71.8 10.669999999999998, 75.7 14.829999999999998
+      Q 71.8 12.229999999999997, 65.3 12.229999999999997
+      Q 58.8 11.709999999999997, 52.3 13.269999999999996 Z"
+      fill="url(#headGradHair)" opacity="0.5" />
+    <path d="
+      M65.3 15.609999999999996
+      Q 51.571999999999996 13.737999999999996,
+        54.69199999999999 4.377999999999997
+      Q 58.43599999999999 -3.110000000000003,
+        65.92399999999999 0.009999999999996234
+      Q 73.41199999999999 -3.7340000000000053,
+        77.15599999999999 5.001999999999996
+      Q 79.652 13.113999999999997,
+        69.66799999999999 18.729999999999997
+      Q 67.172 17.482,
+        65.3 15.609999999999996 Z"
+      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M65.92399999999999 0.009999999999996234
+      Q 65.92399999999999 3.753999999999996,
+        65.3 6.873999999999997"
+      fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" opacity="0.5" />
+    <ellipse cx="62.18" cy="6.2499999999999964" rx="2.7456" ry="3.7439999999999998" fill="#4A4A4A" opacity="0.25" transform="rotate(-15 62.18 6.2499999999999964)" />
     <!-- Eyes -->
-    <path d="M50.68 35.849999999999994 Q 55.68 29.849999999999994, 60.68 35.849999999999994" fill="none" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" />
-    <path d="M67.32 35.849999999999994 Q 72.32 29.849999999999994, 77.32 35.849999999999994" fill="none" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" />
+    <ellipse cx="55.68" cy="34.849999999999994" rx="5.4" ry="6" fill="#FFFFFF" stroke="#2C1810" stroke-width="1.5" />
+    <ellipse cx="55.68" cy="34.849999999999994" rx="3.3000000000000003" ry="3.9000000000000004" fill="#1A1A1A" />
+    <ellipse cx="57.68" cy="32.849999999999994" rx="2.2" ry="2.5" fill="#FFFFFF" />
+    <ellipse cx="54.18" cy="36.349999999999994" rx="1.2" ry="1.2" fill="#FFFFFF" opacity="0.6" />
+    <ellipse cx="72.32" cy="34.849999999999994" rx="5.4" ry="6" fill="#FFFFFF" stroke="#2C1810" stroke-width="1.5" />
+    <ellipse cx="72.32" cy="34.849999999999994" rx="3.3000000000000003" ry="3.9000000000000004" fill="#1A1A1A" />
+    <ellipse cx="74.32" cy="32.849999999999994" rx="2.2" ry="2.5" fill="#FFFFFF" />
+    <ellipse cx="70.82" cy="36.349999999999994" rx="1.2" ry="1.2" fill="#FFFFFF" opacity="0.6" />
     <!-- Mouth -->
     <path d="M60 43.43 Q 64 49.43, 68 43.43" fill="#E57373" stroke="#2C1810" stroke-width="1.5" stroke-linecap="round" />
     <!-- Blush -->

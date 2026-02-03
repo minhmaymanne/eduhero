@@ -5,7 +5,7 @@
       <stop offset="50%" stop-color="#F5D0A9" />
       <stop offset="100%" stop-color="#D4A574" />
     </radialGradient>
-    <radialGradient id="headGradHair" cx="50%" cy="30%" r="70%" fx="50%" fy="30%">
+    <radialGradient id="headGradHair" cx="45%" cy="30%" r="65%" fx="45%" fy="30%">
       <stop offset="0%" stop-color="#4A4A4A" />
       <stop offset="50%" stop-color="#2C2C2C" />
       <stop offset="100%" stop-color="#1A1A1A" />
@@ -14,26 +14,40 @@
   </defs>
     <!-- Head -->
     <ellipse cx="32" cy="34" rx="26" ry="24.7" fill="url(#headGrad)" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-    <!-- Hair -->
-    <path d="M13.8 21
-      Q 24.2 -1.1000000000000014, 32 4.100000000000001
-      Q 35.9 -2.3999999999999986, 34.6 -5
-      Q 41.1 0.19999999999999574, 45 5.399999999999999
-      Q 50.2 15.8, 51.5 26.2
-      Q 45 14.5, 32 11.900000000000002
-      Q 19 15.8, 13.8 21 Z"
-      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M28.1 13.2
-      Q 33.3 -6.300000000000004, 35.9 -7.600000000000001
-      Q 37.2 0.19999999999999574, 34.6 13.2"
-      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Hair: quả đào chú tiểu -->
+    <path d="M20.299999999999997 13.719999999999999
+      Q 26.8 10.079999999999998, 33.3 10.599999999999998
+      Q 39.8 11.120000000000001, 43.7 15.280000000000001
+      Q 39.8 12.68, 33.3 12.68
+      Q 26.8 12.16, 20.299999999999997 13.719999999999999 Z"
+      fill="url(#headGradHair)" opacity="0.5" />
+    <path d="
+      M33.3 16.06
+      Q 19.571999999999996 14.187999999999999,
+        22.691999999999997 4.827999999999999
+      Q 26.435999999999996 -2.66,
+        33.924 0.4599999999999991
+      Q 41.412 -3.2840000000000025,
+        45.156 5.451999999999999
+      Q 47.651999999999994 13.564,
+        37.668 19.18
+      Q 35.172 17.932000000000002,
+        33.3 16.06 Z"
+      fill="url(#headGradHair)" stroke="#2C1810" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M33.924 0.4599999999999991
+      Q 33.924 4.203999999999999,
+        33.3 7.324"
+      fill="none" stroke="#1A1A1A" stroke-width="1.2" stroke-linecap="round" opacity="0.5" />
+    <ellipse cx="30.179999999999996" cy="6.699999999999999" rx="2.7456" ry="3.7439999999999998" fill="#4A4A4A" opacity="0.25" transform="rotate(-15 30.179999999999996 6.699999999999999)" />
     <!-- Eyes -->
-    <ellipse cx="23.68" cy="35.3" rx="4.4" ry="5.5" fill="#1A1A1A" />
-    <ellipse cx="40.32" cy="35.3" rx="4.4" ry="5.5" fill="#1A1A1A" />
-    <ellipse cx="25.18" cy="33.3" rx="2" ry="2.2" fill="#FFFFFF" />
-    <ellipse cx="41.82" cy="33.3" rx="2" ry="2.2" fill="#FFFFFF" />
-    <ellipse cx="22.68" cy="36.8" rx="1" ry="1" fill="#FFFFFF" opacity="0.6" />
-    <ellipse cx="39.32" cy="36.8" rx="1" ry="1" fill="#FFFFFF" opacity="0.6" />
+    <ellipse cx="23.68" cy="35.3" rx="5.4" ry="6" fill="#FFFFFF" stroke="#2C1810" stroke-width="1.5" />
+    <ellipse cx="23.68" cy="35.3" rx="3.3000000000000003" ry="3.9000000000000004" fill="#1A1A1A" />
+    <ellipse cx="25.68" cy="33.3" rx="2.2" ry="2.5" fill="#FFFFFF" />
+    <ellipse cx="22.18" cy="36.8" rx="1.2" ry="1.2" fill="#FFFFFF" opacity="0.6" />
+    <ellipse cx="40.32" cy="35.3" rx="5.4" ry="6" fill="#FFFFFF" stroke="#2C1810" stroke-width="1.5" />
+    <ellipse cx="40.32" cy="35.3" rx="3.3000000000000003" ry="3.9000000000000004" fill="#1A1A1A" />
+    <ellipse cx="42.32" cy="33.3" rx="2.2" ry="2.5" fill="#FFFFFF" />
+    <ellipse cx="38.82" cy="36.8" rx="1.2" ry="1.2" fill="#FFFFFF" opacity="0.6" />
     <!-- Mouth -->
     <line x1="29" y1="43.88" x2="35" y2="43.88" stroke="#2C1810" stroke-width="2" stroke-linecap="round" />
     <!-- Blush -->

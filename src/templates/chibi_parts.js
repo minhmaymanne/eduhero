@@ -86,55 +86,96 @@ function chibiHead(opts = {}) {
   body += `    <!-- Head -->\n`;
   body += `    <ellipse cx="${cx}" cy="${cy}" rx="${r}" ry="${r * 0.95}" fill="url(#${gId})" ${outlineStyle(2.5, outline)} />\n`;
 
-  // ── Chỏm tóc ──
-  defs += radialGradient(`${gId}Hair`, [hair.highlight, hair.base, hair.shadow], '50%', '30%', '70%') + '\n';
-  body += `    <!-- Hair -->\n`;
-  // Tóc phủ đỉnh đầu
-  body += `    <path d="M${cx - r * 0.7} ${cy - r * 0.5}
-      Q ${cx - r * 0.3} ${cy - r * 1.35}, ${cx} ${cy - r * 1.15}
-      Q ${cx + r * 0.15} ${cy - r * 1.4}, ${cx + r * 0.1} ${cy - r * 1.5}
-      Q ${cx + r * 0.35} ${cy - r * 1.3}, ${cx + r * 0.5} ${cy - r * 1.1}
-      Q ${cx + r * 0.7} ${cy - r * 0.7}, ${cx + r * 0.75} ${cy - r * 0.3}
-      Q ${cx + r * 0.5} ${cy - r * 0.75}, ${cx} ${cy - r * 0.85}
-      Q ${cx - r * 0.5} ${cy - r * 0.7}, ${cx - r * 0.7} ${cy - r * 0.5} Z"
-      fill="url(#${gId}Hair)" ${outlineStyle(2, outline)} />\n`;
+  // ── Chỏm tóc quả đào (kiểu chú tiểu) ──
+  // Một chỏm tóc tròn nhỏ nằm trên đỉnh đầu, hình quả đào/trái tim lệch
+  // Đầu gần như trọc, chỉ có 1 búi tóc cute ở trên
+  defs += radialGradient(`${gId}Hair`, [hair.highlight, hair.base, hair.shadow], '45%', '30%', '65%') + '\n';
+  body += `    <!-- Hair: quả đào chú tiểu -->\n`;
 
-  // Chỏm tóc phía trước (kiểu chú tiểu)
-  body += `    <path d="M${cx - r * 0.15} ${cy - r * 0.8}
-      Q ${cx + r * 0.05} ${cy - r * 1.55}, ${cx + r * 0.15} ${cy - r * 1.6}
-      Q ${cx + r * 0.2} ${cy - r * 1.3}, ${cx + r * 0.1} ${cy - r * 0.8}"
-      fill="url(#${gId}Hair)" ${outlineStyle(2, outline)} />\n`;
+  // Chân tóc: vùng tóc mỏng sát da đầu (viền tóc ngắn trên trán)
+  body += `    <path d="M${cx - r * 0.45} ${cy - r * 0.78}
+      Q ${cx - r * 0.2} ${cy - r * 0.92}, ${cx + r * 0.05} ${cy - r * 0.9}
+      Q ${cx + r * 0.3} ${cy - r * 0.88}, ${cx + r * 0.45} ${cy - r * 0.72}
+      Q ${cx + r * 0.3} ${cy - r * 0.82}, ${cx + r * 0.05} ${cy - r * 0.82}
+      Q ${cx - r * 0.2} ${cy - r * 0.84}, ${cx - r * 0.45} ${cy - r * 0.78} Z"
+      fill="url(#${gId}Hair)" opacity="0.5" />\n`;
+
+  // Búi tóc quả đào chính: hình trái tim lệch phải, đáy nhọn lệch sang phải
+  // Nửa trái (tròn lớn hơn)
+  const peachCX = cx + r * 0.05;  // hơi lệch phải
+  const peachTopY = cy - r * 1.05;
+  const peachSize = r * 0.48;
+
+  body += `    <path d="
+      M${peachCX} ${peachTopY + peachSize * 0.75}
+      Q ${peachCX - peachSize * 1.1} ${peachTopY + peachSize * 0.6},
+        ${peachCX - peachSize * 0.85} ${peachTopY - peachSize * 0.15}
+      Q ${peachCX - peachSize * 0.55} ${peachTopY - peachSize * 0.75},
+        ${peachCX + peachSize * 0.05} ${peachTopY - peachSize * 0.5}
+      Q ${peachCX + peachSize * 0.65} ${peachTopY - peachSize * 0.8},
+        ${peachCX + peachSize * 0.95} ${peachTopY - peachSize * 0.1}
+      Q ${peachCX + peachSize * 1.15} ${peachTopY + peachSize * 0.55},
+        ${peachCX + peachSize * 0.35} ${peachTopY + peachSize * 1.0}
+      Q ${peachCX + peachSize * 0.15} ${peachTopY + peachSize * 0.9},
+        ${peachCX} ${peachTopY + peachSize * 0.75} Z"
+      fill="url(#${gId}Hair)" ${outlineStyle(2.5, outline)} />\n`;
+
+  // Rãnh trái tim nhẹ trên đỉnh búi tóc
+  body += `    <path d="M${peachCX + peachSize * 0.05} ${peachTopY - peachSize * 0.5}
+      Q ${peachCX + peachSize * 0.05} ${peachTopY - peachSize * 0.2},
+        ${peachCX} ${peachTopY + peachSize * 0.05}"
+      fill="none" stroke="${hair.shadow}" stroke-width="1.2" stroke-linecap="round" opacity="0.5" />\n`;
+
+  // Highlight sáng trên búi tóc
+  body += `    <ellipse cx="${peachCX - peachSize * 0.25}" cy="${peachTopY}" rx="${peachSize * 0.22}" ry="${peachSize * 0.3}" fill="${hair.highlight}" opacity="0.25" transform="rotate(-15 ${peachCX - peachSize * 0.25} ${peachTopY})" />\n`;
 
   // ── Mắt ──
+  // Mặc định: mắt MỞ TO, tròn, long lanh (anime-style big eyes)
+  // Chỉ nhắm khi blink hoặc hurt
   body += `    <!-- Eyes -->\n`;
   const eyeL = cx - r * 0.32;
   const eyeR = cx + r * 0.32;
   const eyeY = cy + r * 0.05;
+  const eyeSize = 6;
 
-  if (expr === 'blink' || expr === 'hurt') {
-    // Mắt nhắm (đường cong)
+  if (expr === 'blink') {
+    // Mắt nhắm (chớp mắt — đường cong nhẹ)
     body += `    <path d="M${eyeL - 5} ${eyeY} Q ${eyeL} ${eyeY + 3}, ${eyeL + 5} ${eyeY}" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" />\n`;
     body += `    <path d="M${eyeR - 5} ${eyeY} Q ${eyeR} ${eyeY + 3}, ${eyeR + 5} ${eyeY}" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" />\n`;
-  } else if (expr === 'happy' || expr === 'celebrate') {
-    // Mắt cười cong
-    body += `    <path d="M${eyeL - 5} ${eyeY + 1} Q ${eyeL} ${eyeY - 5}, ${eyeL + 5} ${eyeY + 1}" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" />\n`;
-    body += `    <path d="M${eyeR - 5} ${eyeY + 1} Q ${eyeR} ${eyeY - 5}, ${eyeR + 5} ${eyeY + 1}" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" />\n`;
+  } else if (expr === 'hurt') {
+    // Mắt nhắm đau (cong xuống, lông mày nhíu)
+    body += `    <path d="M${eyeL - 5} ${eyeY - 1} Q ${eyeL} ${eyeY + 4}, ${eyeL + 5} ${eyeY - 1}" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" />\n`;
+    body += `    <path d="M${eyeR - 5} ${eyeY - 1} Q ${eyeR} ${eyeY + 4}, ${eyeR + 5} ${eyeY - 1}" fill="none" stroke="${outline}" stroke-width="2.5" stroke-linecap="round" />\n`;
+    // Mồ hôi
+    body += `    <path d="M${cx + r * 0.55} ${cy - r * 0.15} Q ${cx + r * 0.58} ${cy + r * 0.05}, ${cx + r * 0.52} ${cy + r * 0.1}" fill="${PALETTE.ui.info.highlight}" stroke="${PALETTE.ui.info.base}" stroke-width="0.8" />\n`;
+  } else if (expr === 'celebrate') {
+    // Mắt sao (ngôi sao trong mắt — vui sướng cực độ)
+    const starEye = (ex, ey) => {
+      body += `    <ellipse cx="${ex}" cy="${ey}" rx="${eyeSize * 0.9}" ry="${eyeSize}" fill="${PALETTE.hero.eyes.base}" />\n`;
+      // Ngôi sao sáng thay vì đồng tử
+      body += sparkle(ex, ey, 3.5, '#FFD54F');
+      body += `    <ellipse cx="${ex + 2}" cy="${ey - 2.5}" rx="1.5" ry="1.8" fill="${PALETTE.hero.eyeShine}" />\n`;
+    };
+    starEye(eyeL, eyeY);
+    starEye(eyeR, eyeY);
   } else {
-    // Mắt tròn to (serious / thinking / default)
-    const eyeSize = 5.5;
-    body += `    <ellipse cx="${eyeL}" cy="${eyeY}" rx="${eyeSize * 0.8}" ry="${eyeSize}" fill="${PALETTE.hero.eyes.base}" />\n`;
-    body += `    <ellipse cx="${eyeR}" cy="${eyeY}" rx="${eyeSize * 0.8}" ry="${eyeSize}" fill="${PALETTE.hero.eyes.base}" />\n`;
-    // Đồng tử sáng (shine)
-    body += `    <ellipse cx="${eyeL + 1.5}" cy="${eyeY - 2}" rx="2" ry="2.2" fill="${PALETTE.hero.eyeShine}" />\n`;
-    body += `    <ellipse cx="${eyeR + 1.5}" cy="${eyeY - 2}" rx="2" ry="2.2" fill="${PALETTE.hero.eyeShine}" />\n`;
-    body += `    <ellipse cx="${eyeL - 1}" cy="${eyeY + 1.5}" rx="1" ry="1" fill="${PALETTE.hero.eyeShine}" opacity="0.6" />\n`;
-    body += `    <ellipse cx="${eyeR - 1}" cy="${eyeY + 1.5}" rx="1" ry="1" fill="${PALETTE.hero.eyeShine}" opacity="0.6" />\n`;
+    // ── MẮT MỞ TO LONG LANH (default cho happy, serious, thinking, v.v.) ──
+    const drawBigEye = (ex, ey, lookUpRight) => {
+      // Tròng mắt trắng lớn
+      body += `    <ellipse cx="${ex}" cy="${ey}" rx="${eyeSize * 0.9}" ry="${eyeSize}" fill="#FFFFFF" stroke="${outline}" stroke-width="1.5" />\n`;
+      // Đồng tử đen to tròn
+      const pupilOffX = lookUpRight ? 1.5 : 0;
+      const pupilOffY = lookUpRight ? -1.5 : 0;
+      body += `    <ellipse cx="${ex + pupilOffX}" cy="${ey + pupilOffY}" rx="${eyeSize * 0.55}" ry="${eyeSize * 0.65}" fill="${PALETTE.hero.eyes.base}" />\n`;
+      // Highlight lớn (phản chiếu ánh sáng chính)
+      body += `    <ellipse cx="${ex + pupilOffX + 2}" cy="${ey + pupilOffY - 2}" rx="2.2" ry="2.5" fill="${PALETTE.hero.eyeShine}" />\n`;
+      // Highlight nhỏ (phản chiếu phụ)
+      body += `    <ellipse cx="${ex + pupilOffX - 1.5}" cy="${ey + pupilOffY + 1.5}" rx="1.2" ry="1.2" fill="${PALETTE.hero.eyeShine}" opacity="0.6" />\n`;
+    };
 
-    if (expr === 'thinking') {
-      // Mắt nhìn lên góc
-      body += `    <ellipse cx="${eyeL + 2}" cy="${eyeY - 2}" rx="${eyeSize * 0.5}" ry="${eyeSize * 0.65}" fill="${PALETTE.hero.eyes.base}" />\n`;
-      body += `    <ellipse cx="${eyeR + 2}" cy="${eyeY - 2}" rx="${eyeSize * 0.5}" ry="${eyeSize * 0.65}" fill="${PALETTE.hero.eyes.base}" />\n`;
-    }
+    const lookUp = (expr === 'thinking');
+    drawBigEye(eyeL, eyeY, lookUp);
+    drawBigEye(eyeR, eyeY, lookUp);
   }
 
   // ── Miệng ──
